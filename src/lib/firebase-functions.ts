@@ -1,8 +1,7 @@
-import { collection, getCountFromServer, limit, orderBy, query, startAfter, where } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { doc, getDoc, getDocs, updateDoc , addDoc, deleteDoc } from "firebase/firestore";
-import { getStorage, ref, listAll, uploadBytesResumable, getDownloadURL, deleteObject  } from "firebase/storage";
 
-import { db } from "./firebase";
+import { db } from "@/lib/firebase";
 import { formatDate } from "@/utils/format-date";
 
 
@@ -36,6 +35,22 @@ export const getAllDataFromCollectionWithIds = async (
   );
 
   return listOfData;
+};
+
+export const getAllDataFromCollection = async (collectionName: string) => {
+    try {
+        let allDataFromCollection: any = [];
+        const querySnapshot = await getDocs(collection(db, collectionName));
+      
+        querySnapshot.forEach((doc) => {
+          allDataFromCollection.push({ ...doc.data(), id: doc.id });
+        });
+      
+        return allDataFromCollection.filter(allDataFromCollection, "isActive");
+    } catch (error) {
+        console.log("Error On getAllDataFromCollection()", error);
+    }
+
 };
 
 export const addDocumentToCollection = async (
