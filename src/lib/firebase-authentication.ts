@@ -90,6 +90,7 @@ import {
       );
       return true;
     } catch (error) {
+      console.log("Error on isLoggedIn()", error);
       return false;
     }
   };
