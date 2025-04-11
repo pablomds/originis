@@ -4,7 +4,7 @@ import React from 'react'
 
 const NavbarPublic = () => {
   return (
-    <nav className="px-[25px] py-[22px] md:pl-[96px] md:pr-[27px] flex flex-row justify-between items-center h-[77px]">
+    <nav className="px-[25px] py-[22px] md:pl-[96px] md:pr-[27px] border-b border-[#E5E7EB] flex flex-row justify-between items-center h-[77px]">
       <div className="flex flex-row items-center gap-x-[11px]">
         <img src="/logo.svg" alt="Originis Logo" className="h-[11px] w-auto" />
         <p className="text-[18px] text-indigo-600">Originis</p>

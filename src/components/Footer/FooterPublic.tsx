@@ -2,7 +2,7 @@ import React from 'react'
 
 function FooterPublic() {
   return (
-    <footer className="bg-gray-900 px-[14px] md:pl-[96px] md:pr-[52px]">
+    <footer className="bg-gray-900 border-t border-[#E5E7EB] px-[14px] md:pl-[96px] md:pr-[52px]">
       <div className="md:flex md:flex-row">
         <div>
           <div className="pt-[40px] md:pt-[48px] flex items-center gap-x-[6px] pb-[20px]">
