@@ -1,4 +1,3 @@
-import Image from "next/image";
 import NavbarPublic from "@/components/Header/NavbarPublic";
 import FooterPublic from "@/components/Footer/FooterPublic"
 import { Music, BookText, MessagesSquare, Users, MapPin, Earth, Badge  } from 'lucide-react';
