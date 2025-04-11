@@ -3,6 +3,7 @@
 import { ArrowLeft, Globe, BookOpen, Clock, Users, MessageSquare, Play } from "lucide-react"
 import Button from '@mui/material/Button';
 import { JSX } from "react";
+import { HeaderDictionaryButton } from "@/components/Dictionary/header-dictionary-button";
 
 // Définition des interfaces pour les props
 interface SicilianHistoryPageProps {
@@ -32,29 +33,7 @@ export default function SicilianHistoryPage({ onTabChange }: SicilianHistoryPage
 
     return (
         <div className="min-h-screen bg-[#f8f7ff]">
-            {/* Header */}
-            <header className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
-                <div className="flex items-center gap-2">
-                    <div className="flex items-center text-indigo-600 font-bold">
-                        <span className="bg-black text-white text-xs px-1.5 py-0.5 rounded mr-1">O</span>
-                        Originis
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                    <div className="relative">
-                        <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                            15
-                        </div>
-                        <button className="rounded-full p-1 hover:bg-slate-100">
-                            <div className="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
-                                <img src="/placeholder.svg?height=32&width=32" alt="Profile" className="h-full w-full object-cover" />
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </header>
-
+            
             {/* Main Content */}
             <main className="container mx-auto px-4 py-6 max-w-6xl">
                 {/* Back Button and Progress */}
@@ -70,7 +49,7 @@ export default function SicilianHistoryPage({ onTabChange }: SicilianHistoryPage
                     <div className="w-full md:w-auto flex items-center gap-2">
                         <span className="text-sm text-slate-500">History Progress:</span>
                         <div className="w-48 h-2 bg-slate-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-green-500 rounded-full" style={{ width: "35%" }}></div>
+                            <div className="h-full bg-amber-500 rounded-full" style={{ width: "35%" }}></div>
                         </div>
                         <span className="text-sm font-medium">35%</span>
                     </div>

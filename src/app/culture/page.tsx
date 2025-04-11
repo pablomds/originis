@@ -57,9 +57,7 @@ export default function SicilianCulturePage({ onTabChange }: SicilianCulturePage
                         </div>
                     </div>
 
-                    <nav className="hidden md:flex items-center space-x-6">
-                        <HeaderDictionaryButton />
-                    </nav>
+                    <HeaderDictionaryButton/>
 
                     <div className="flex items-center gap-4">
                         <div className="relative">
@@ -88,7 +86,7 @@ export default function SicilianCulturePage({ onTabChange }: SicilianCulturePage
                     <div className="w-full md:w-auto flex items-center gap-2">
                         <span className="text-sm text-slate-500">Culture Progress:</span>
                         <div className="w-48 h-2 bg-slate-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-green-500 rounded-full" style={{ width: "40%" }}></div>
+                            <div className="h-full bg-indigo-500 rounded-full" style={{ width: "40%" }}></div>
                         </div>
                         <span className="text-sm font-medium">40%</span>
                     </div>
