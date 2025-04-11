@@ -115,25 +115,25 @@ export default function SicilianCulturePage({ onTabChange }: SicilianCulturePage
                 <div className="flex overflow-x-auto mb-6 pb-2 scrollbar-hide">
                     <button
                         onClick={() => handleTabChange("overview")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-indigo-100 text-indigo-700 border-2 border-indigo-200 font-medium flex-shrink-0"
+                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-indigo-100 text-indigo-700 border-2 border-indigo-200 font-medium flex-shrink-0 hover:cursor-pointer"
                     >
                         Overview
                     </button>
                     <button
                         onClick={() => handleTabChange("history")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-amber-100 hover:text-amber-700 hover:border-amber-200"
+                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-amber-100 hover:text-amber-700 hover:border-amber-200 hover:cursor-pointer"
                     >
                         History
                     </button>
                     <button
                         onClick={() => handleTabChange("language")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-pink-100 hover:text-pink-700 hover:border-pink-200"
+                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-pink-100 hover:text-pink-700 hover:border-pink-200 hover:cursor-pointer"
                     >
                         Language
                     </button>
                     <button
                         onClick={() => handleTabChange("phonetics")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-blue-100 hover:text-blue-700 hover:border-blue-200"
+                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-violet-100 hover:text-violet-700 hover:border-violet-200 hover:cursor-pointer"
                     >
                         Phonetics
                     </button>
