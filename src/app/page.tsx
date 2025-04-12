@@ -5,25 +5,25 @@ import { Music, BookText, MessagesSquare, Users, MapPin, Earth, Badge  } from 'l
 const ConnectWithNativesSpeakers = [
   {
     gradientClass: "from-[#F5F3FF] to-pink-50",
-    buttonClassColor: "bg-purple-500",
+    buttonClassColor: "bg-purple-500 hover:bg-purple-600",
     fullname: "Ghjiseppu C.",
     dialect: "Corsican Speaker"
   },
   {
     gradientClass: "from-[#EFF6FF] to-[#ECFDF5]",
-    buttonClassColor: "bg-blue-500",
+    buttonClassColor: "bg-blue-500 hover:bg-blue-600",
     fullname: "Vincenzo B.",
     dialect: "Sicilian Speaker"
   },
   {
     gradientClass: "from-amber-50 to-[#FFF7ED]",
-    buttonClassColor: "bg-amber-500",
+    buttonClassColor: "bg-amber-500 hover:bg-amber-600",
     fullname: "João S.",
     dialect: "Caipira Speaker"
   },
   {
     gradientClass: "from-[#FEF2F2] to-[#FFF7ED]",
-    buttonClassColor: "bg-red-500",
+    buttonClassColor: "bg-red-500 hover:bg-red-600",
     fullname: "Koffi L.",
     dialect: "Lingala Speaker"
   }
@@ -58,7 +58,7 @@ const LearningMethods = [
 
 function CardConnectWithNativeSpeakers({gradientClass, buttonClassColor, fullname,  dialect } : { gradientClass: string, buttonClassColor: string, fullname: string, dialect: string }) {
   return (
-    <div className={`bg-gradient-to-r ${gradientClass} flex flex-col items-center rounded-lg gap-y-4 px-[23px] md:px-[24px] pb-9 md:pb-[24px]`}>
+    <div className={`bg-gradient-to-r ${gradientClass} flex flex-col items-center shadow-sm rounded-lg gap-y-4 px-[23px] md:px-[24px] pb-9 md:pb-[24px]`}>
       <div className="flex flex-col items-center pt-[56px] md:pt-[24px]">
         <div className="h-[85px] w-[85px] md:h-[80px] md:w-[80px] bg-[#D9D9D9] rounded-full"></div>
         <span className="font-semibold text-base md:text-lg md:pt-[11px]">{fullname}</span>
@@ -101,7 +101,7 @@ export default function Home() {
       <main>
         <div className="bg-indigo-50 pl-[27px] pt-[42px] pb-[96px] md:pl-[96px] md:pb-0 pr-[25px] md:pr-0 text-left">
           <div className="flex flex-col md:flex-row md:items-center gap-y-[43px] md:gap-x-[95px]">
-            <div className="flex flex-col gap-y-[13px] md:gap-y-0 md:w-1/2">
+            <div className="flex flex-col gap-y-[13px] md:w-1/3">
               <h2 className="text-3xl md:text-5xl md:pb-[17px] font-semibold md:font-normal">
                 Discover and Learn Local Dialects and Cultures
               </h2>
@@ -109,18 +109,18 @@ export default function Home() {
                 Connect with native speakers and immerse yourself in authentic
                 local languages and cultures
               </p>
-              <a className="bg-indigo-600 w-[222px] py-4 text-white rounded-[8px] text-center font-semibold text-lg">
+              <a href="#" className="bg-indigo-600 hover:bg-indigo-700 w-[222px] py-4 text-white rounded-[8px] text-center font-semibold text-lg">
                 Start Learning Now
               </a>
             </div>
-            <div className="flex justify-center md:w-1/2 md:justify-end">
+            <div className="flex justify-center md:w-2/3 md:justify-end">
               <img
                 className="md:hidden"
                 src="/mobile-homepage-illustration.svg"
                 alt="Homepage Illustration"
               />
               <img
-                className="hidden md:block md:w-[624px] md:h-[534px]"
+                className="hidden md:block md:w-[624px] md:h-[534px] md:rounded-tl-[8px]"
                 src="/desktop-homepage-illustration.png"
                 alt="Homepage Illustration"
               />
@@ -130,29 +130,29 @@ export default function Home() {
         <div className="pt-[55px] md:pt-[64px] px-[23px] md:px-[80px] pb-[77px]">
           <div className="flex flex-col gap-y-[55px]">
             <h2 className="text-[28px] md:text-3xl font-semibold text-center">
-              Choose your interest
+              Choose Your Interest
             </h2>
             <div className="flex flex-col md:flex-row md:justify-center gap-y-6 md:gap-x-[32px]">
-              <div className="bg-pink-50 rounded-[8px] md:w-[26rem]">
-                <div className="pt-[70px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
+              <div className="bg-gradient-to-r from-[#FDF2F8] to-[#F5F3FF] shadow-md rounded-[8px] md:w-[26rem]">
+                <div className="pt-[70px] md:pt-[24px] pb-[28px] md:pb-[24px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                   <div className="flex flex-row items-center gap-x-2">
                     <MapPin size={24} />
                     <h3 className="font-semibold text-xl">Local Dialects</h3>
                   </div>
-                  <p className="text-slate-600 text-sm md:text-base font-medium md:w-11/12">
+                  <p className="text-slate-600 text-sm md:text-base font-normal">
                     Learn the unique expressions and traditions of the local
                     dialect of your choice
                   </p>
                   <a
-                    href=""
-                    className="h-[42px] bg-pink-500 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
+                    href="#"
+                    className="h-[42px] bg-pink-500 hover:bg-pink-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                   >
                     View
                   </a>
                 </div>
               </div>
-              <div className="bg-blue-50 rounded-[8px] md:w-[26rem]">
-                <div className="pt-[70px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
+              <div className="bg-gradient-to-r from-[#EFF6FF] to-[#ECFDF5] shadow-md rounded-[8px] md:w-[26rem]">
+                <div className="pt-[70px] md:pt-[24px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                   <div className="flex flex-row items-center gap-x-2"> 
                     <Earth size={24} />
                     <h3 className="font-semibold text-xl">Old Languages</h3>
@@ -163,14 +163,14 @@ export default function Home() {
                   </p>
                   <a
                     href=""
-                    className="h-[42px] bg-blue-500 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
+                    className="h-[42px] bg-blue-500 hover:bg-blue-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                   >
                     View
                   </a>
                 </div>
               </div>
-              <div className="bg-amber-50 rounded-[8px] md:w-[26rem]">
-                <div className="pt-[70px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
+              <div className="bg-gradient-to-r from-[#FFFBEB] to-[#FFF7ED] shadow-md rounded-[8px] md:w-[26rem]">
+                <div className="pt-[70px] md:pt-[24px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                   <div className="flex flex-row items-center gap-x-2">
                     <Badge size={24} />
                     <h3 className="font-semibold text-xl">Learn Cultures</h3>
@@ -180,7 +180,7 @@ export default function Home() {
                   </p>
                   <a
                     href=""
-                    className="h-[42px] bg-amber-500 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
+                    className="h-[42px] bg-amber-500 hover:bg-amber-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                   >
                     View
                   </a>
