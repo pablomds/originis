@@ -1,11 +1,10 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, BookOpen, MessageSquare } from "lucide-react"
-import { LinearProgress, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
-import { JSX } from "react"
-import { HeaderDictionaryButton } from "@/components/Dictionary/header-dictionary-button"
-
+import { ArrowLeft, MessageSquare } from "lucide-react"
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
+import { useRouter } from 'next/navigation'; // ✅ Correct pour /app
+import { CultureMenu } from "@/components/CultureMenu/CultureMenu"
 // Define necessary types
 type LanguageFeature = {
     text: string;
@@ -51,18 +50,10 @@ type SicilianExpression = {
     initial: string;
 }
 
-interface SicilianCulturePageProps {
-    onTabChange?: (tab: string) => void;
-}
+export default function SicilianLanguagePage() {
+    
+    const router = useRouter();
 
-interface CultureCardProps {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-}
-
-export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePageProps): JSX.Element {
-    // Language features data
     const languageFeatures: LanguageFeature[] = [
         { text: "Distinct phonological system with unique consonant sounds" },
         { text: "Retention of Latin final vowels lost in standard Italian" },
@@ -72,13 +63,6 @@ export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePag
         { text: "UNESCO recognition as a heritage language" }
     ];
 
-    const handleTabChange = (tab: string): void => {
-        if (onTabChange) {
-            onTabChange(tab)
-        }
-    }
-
-    // Linguistic classifications data
     const linguisticCategories: LinguisticCategory[] = [
         { title: "Phonological Differences", description: "Distinctive consonant clusters and vowel sounds not found in standard Italian" },
         { title: "Grammatical Structure", description: "Unique verb conjugations and noun declensions with Greek and Arabic influences" },
@@ -115,27 +99,6 @@ export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePag
         { title: "Latin Neuter", description: "Retention of the Latin neuter gender in some words" }
     ];
 
-    // Greek origin vocabulary
-    const greekVocabulary: VocabularyOrigin[] = [
-        { word: "babbiari", meaning: "to joke", origin: 'from Greek βαμβαίνω (bambaino)' },
-        { word: "zimmari", meaning: "goat", origin: "from Greek χίμαρος (chimaros)" },
-        { word: "cirasa", meaning: "cherry", origin: "from Greek κεράσιον (kerasion)" }
-    ];
-
-    // Arabic origin vocabulary
-    const arabicVocabulary: VocabularyOrigin[] = [
-        { word: "zaffarana", meaning: "saffron", origin: "from Arabic زَعْفَرَان (za'farān)" },
-        { word: "gebbia", meaning: "water tank", origin: "from Arabic جابية (jābiya)" },
-        { word: "taliari", meaning: "to look", origin: "from Arabic طلع (ṭalaʿa)" }
-    ];
-
-    // Norman origin vocabulary
-    const normanVocabulary: VocabularyOrigin[] = [
-        { word: "accattari", meaning: "to buy", origin: "from Norman French acater" },
-        { word: "custureri", meaning: "tailor", origin: "from Norman French cousturier" },
-        { word: "racina", meaning: "grape", origin: "from Norman French raisin" }
-    ];
-
     // Sicilian expressions data
     const sicilianExpressions: SicilianExpression[] = [
         { expression: "Amunì!", meaning: "Let's go! / Come on!", usage: "Used to encourage someone to join an activity", initial: "A" },
@@ -145,10 +108,10 @@ export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePag
     ];
 
     return (
-        <div className="min-h-screen bg-white">
-           
+        <div className="min-h-screen bg-indigo-50">
+
             {/* Main Content */}
-            <main className="container mx-auto px-4 py-4 sm:py-6 max-w-5xl">
+            <main className="container mx-auto px-4 py-4 sm:py-6 max-w-6xl">
                 {/* Back Button and Progress */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
                     <Link href="/culture" className="flex items-center text-indigo-600 mb-3 sm:mb-0">
@@ -166,14 +129,12 @@ export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePag
                 </div>
 
                 {/* Hero Section */}
-                <div className="relative rounded-xl overflow-hidden mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/70 z-10"></div>
-                    <Image
+                <div className="relative rounded-xl overflow-hidden mb-8">
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-900/90 to-red-600/50 z-10"></div>
+                    <img
                         src="/Sicily-culture-banner.png"
                         alt="Sicilian Language"
-                        width={1200}
-                        height={400}
-                        className="w-full h-40 sm:h-56 md:h-64 object-cover"
+                        className="w-full h-64 md:h-80 object-cover"
                     />
                     <div className="absolute inset-0 z-20 flex flex-col justify-center px-4 sm:px-8 md:px-12">
                         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">Sicilian Language</h1>
@@ -184,33 +145,7 @@ export default function SicilianLanguagePage({ onTabChange }: SicilianCulturePag
                     </div>
                 </div>
 
-                {/* Navigation Tabs */}
-                <div className="flex overflow-x-auto mb-6 pb-2 scrollbar-hide">
-                    <button
-                        onClick={() => handleTabChange("overview")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 hover:bg-indigo-100 hover:text-indigo-700 border-2 hover:border-indigo-200 font-medium flex-shrink-0 hover:cursor-pointer"
-                    >
-                        Overview
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("history")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-amber-100 hover:text-amber-700 hover:border-amber-200 hover:cursor-pointer"
-                    >
-                        History
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("language")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full border-2 flex-shrink-0 bg-pink-100 text-pink-700 border-pink-200"
-                    >
-                        Language
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("phonetics")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-violet-100 hover:text-violet-700 hover:border-violet-200 hover:cursor-pointer"
-                    >
-                        Phonetics
-                    </button>
-                </div>
+                <CultureMenu />
 
                 {/* Content */}
                 <div className="bg-white rounded-xl p-6 sm:p-8 shadow-sm border border-gray-200">

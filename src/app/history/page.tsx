@@ -3,12 +3,8 @@
 import { ArrowLeft, Globe, BookOpen, Clock, Users, MessageSquare, Play } from "lucide-react"
 import Button from '@mui/material/Button';
 import { JSX } from "react";
-import { HeaderDictionaryButton } from "@/components/Dictionary/header-dictionary-button";
-
-// Définition des interfaces pour les props
-interface SicilianHistoryPageProps {
-    onTabChange?: (tab: string) => void
-}
+import { useRouter } from "next/navigation";
+import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
 
 interface HistoricalPeriodProps {
     year: string
@@ -23,12 +19,11 @@ interface LiteraryPeriodProps {
     notableWorks: string[]
 }
 
-export default function SicilianHistoryPage({ onTabChange }: SicilianHistoryPageProps) {
+export default function SicilianHistoryPage() {
+    const router = useRouter();
     // Fonction pour gérer le changement d'onglet
     const handleTabChange = (tab: string): void => {
-        if (onTabChange) {
-            onTabChange(tab)
-        }
+        router.push(tab);
     }
 
     return (
@@ -72,34 +67,8 @@ export default function SicilianHistoryPage({ onTabChange }: SicilianHistoryPage
                     </div>
                 </div>
 
-                {/* Navigation Tabs */}
-                <div className="flex overflow-x-auto mb-6 pb-2 scrollbar-hide">
-                    <button
-                        onClick={() => handleTabChange("overview")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white text-gray-700 border-2 border-gray-200 hover:bg-indigo-100 hover:text-indigo-700 hover:border-indigo-200 font-medium flex-shrink-0 hover:cursor-pointer"
-                    >
-                        Overview
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("history")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-amber-100 border-2 border-amber-200 text-amber-700 flex-shrink-0 hover:cursor-pointer"
-                    >
-                        History
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("language")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-pink-100 hover:text-pink-700 hover:border-pink-200 hover:cursor-pointer"
-                    >
-                        Language
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("phonetics")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-violet-100 hover:text-violet-700 hover:border-violet-200 hover:cursor-pointer"
-                    >
-                        Phonetics
-                    </button>
-                </div>
-
+                <CultureMenu />
+                
                 {/* Main Content */}
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
                     <div className="mb-6">
@@ -298,11 +267,6 @@ export default function SicilianHistoryPage({ onTabChange }: SicilianHistoryPage
 
                 {/* Learning Resources */}
             </main>
-
-            {/* Footer */}
-            <footer className="bg-white border-t border-gray-200 py-4 px-6 text-center text-sm text-slate-500">
-                <p>© 2025 Originis. All rights reserved.</p>
-            </footer>
         </div>
     )
 }

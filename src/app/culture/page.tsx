@@ -14,12 +14,8 @@ import {
     Play,
     User,
 } from "lucide-react"
-import Button from '@mui/material/Button';
-import { HeaderDictionaryButton } from "@/components/Dictionary/header-dictionary-button"
-
-interface SicilianCulturePageProps {
-    onTabChange?: (tab: string) => void;
-}
+import { useRouter } from "next/navigation";
+import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
 
 interface CultureCardProps {
     icon: React.ReactNode;
@@ -27,53 +23,15 @@ interface CultureCardProps {
     description: string;
 }
 
-export default function SicilianCulturePage({ onTabChange }: SicilianCulturePageProps): React.ReactElement {
-    const [expandedSection, setExpandedSection] = useState<string | null>("history")
+export default function SicilianCulturePage() {
+    const router = useRouter();
 
-    const toggleSection = (section: string): void => {
-        if (expandedSection === section) {
-            setExpandedSection(null)
-        } else {
-            setExpandedSection(section)
-        }
-    }
-
-    // Fonction pour gérer le changement d'onglet
     const handleTabChange = (tab: string): void => {
-        if (onTabChange) {
-            onTabChange(tab)
-        }
+        router.push(tab);
     }
 
     return (
         <div className="min-h-screen bg-[#f8f7ff]">
-            {/* Header */}
-            <header className="flex items-center justify-center px-6 py-3 bg-white border-b border-gray-200">
-                <div className="max-w-6xl w-full mx-auto flex justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="flex items-center text-indigo-600 font-bold">
-                            <span className="bg-black text-white text-xs px-1.5 py-0.5 rounded mr-1">O</span>
-                            Originis
-                        </div>
-                    </div>
-
-                    <HeaderDictionaryButton/>
-
-                    <div className="flex items-center gap-4">
-                        <div className="relative">
-                            <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                15
-                            </div>
-                            <button className="rounded-full p-1 hover:bg-slate-100" onClick={() => handleTabChange("profile")}>
-                                <div className="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
-                                    <img src="/placeholder.svg?height=32&width=32" alt="Profile" className="h-full w-full object-cover" />
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
             {/* Main Content */}
             <main className="container mx-auto px-4 py-6 max-w-6xl">
                 {/* Back Button and Progress */}
@@ -110,32 +68,7 @@ export default function SicilianCulturePage({ onTabChange }: SicilianCulturePage
                 </div>
 
                 {/* Navigation Tabs */}
-                <div className="flex overflow-x-auto mb-6 pb-2 scrollbar-hide">
-                    <button
-                        onClick={() => handleTabChange("overview")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-indigo-100 text-indigo-700 border-2 border-indigo-200 font-medium flex-shrink-0 hover:cursor-pointer"
-                    >
-                        Overview
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("history")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-amber-100 hover:text-amber-700 hover:border-amber-200 hover:cursor-pointer"
-                    >
-                        History
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("language")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-pink-100 hover:text-pink-700 hover:border-pink-200 hover:cursor-pointer"
-                    >
-                        Language
-                    </button>
-                    <button
-                        onClick={() => handleTabChange("phonetics")}
-                        className="whitespace-nowrap px-4 py-2 mr-2 rounded-full bg-white border-2 border-gray-200 flex-shrink-0 hover:bg-violet-100 hover:text-violet-700 hover:border-violet-200 hover:cursor-pointer"
-                    >
-                        Phonetics
-                    </button>
-                </div>
+                <CultureMenu />
 
                 {/* Content */}
                 <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border border-gray-200">
@@ -299,11 +232,6 @@ export default function SicilianCulturePage({ onTabChange }: SicilianCulturePage
                     </div>
                 </section>
             </main>
-
-            {/* Footer */}
-            <footer className="bg-white border-t border-gray-200 py-4 px-4 text-center text-sm text-slate-500">
-                <p>© 2025 Originis. All rights reserved.</p>
-            </footer>
         </div>
     )
 }
