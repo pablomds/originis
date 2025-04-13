@@ -15,11 +15,14 @@ export const metadata: Metadata = {
   description: "Originis allows you to discover cultures and learn local/ancient dialects.",
 };
 
-export default function RootLayout({
+export default function Private({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const handleTabChange = (tab: string) => {
+    console.log(`Switching to ${tab}`); // À remplacer par ta logique réelle
+  };
 
   return (
     <html lang="en">
@@ -37,16 +40,13 @@ export default function RootLayout({
             <HeaderDictionaryButton />
 
             <div className="flex items-center gap-4">
-              <div className="relative flex gap-4">
-                <div className="flex justify-center items-center">
-                  <div className=" flex justify-center items-center object-cover">
-                    <img src="/Flamme.svg" alt="Profile" className="" />
-                  </div>
+              <div className="relative">
+                <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   15
                 </div>
-                <button className="rounded-full p-1 hover:bg-slate-100">
+                <button className="rounded-full p-1 hover:bg-slate-100" onClick={() => handleTabChange("profile")}>
                   <div className="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
-                    <img src="/avatarImg.png" alt="Profile" className="h-full w-full object-cover" />
+                    <img src="/placeholder.svg?height=32&width=32" alt="Profile" className="h-full w-full object-cover" />
                   </div>
                 </button>
               </div>
