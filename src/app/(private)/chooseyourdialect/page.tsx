@@ -1,12 +1,8 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { Search, Star, Heart, Globe, Moon, Flame } from "lucide-react"
-import Link from "next/link"
-import { ReactNode, MouseEvent } from "react"
-
-interface DialectSelectionPageProps {
-    onTabChange?: (tab: string) => void
-}
+import { ReactNode } from "react"
 
 interface DialectCardProps {
     icon: ReactNode
@@ -16,13 +12,13 @@ interface DialectCardProps {
     onClick?: () => void
 }
 
-export default function DialectSelectionPage({ onTabChange }: DialectSelectionPageProps) {
+export default function DialectSelectionPage() {
     // Fonction pour gérer le changement d'onglet
-    const handleTabChange = (tab: string) => {
-        if (onTabChange) {
-            onTabChange(tab)
+    const router = useRouter();
+    
+        const handleTabChange = (tab: string): void => {
+            router.push(tab);
         }
-    }
 
     return (
         <div className="min-h-screen bg-[#f5f7ff]">

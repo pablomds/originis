@@ -39,9 +39,6 @@ interface DictionaryEntry {
   type: "word" | "expression" | "phrase"
 }
 
-// Type for the BookIcon props
-type BookIconProps = React.SVGProps<SVGSVGElement>
-
 export function DictionaryModal(): React.ReactElement {
   // State for dictionary entries
   const [entries, setEntries] = useState<DictionaryEntry[]>([])
@@ -115,24 +112,6 @@ export function DictionaryModal(): React.ReactElement {
     localStorage.setItem("dictionaryEntries", JSON.stringify(entries))
   }, [entries])
 
-  // Effect for search with debounce
-  useEffect(() => {
-    if (searchTimeout.current) {
-      clearTimeout(searchTimeout.current)
-    }
-
-    searchTimeout.current = setTimeout(() => {
-      filterAndSortEntries(searchTerm, sortOrder)
-    }, 300) // 300ms delay
-
-    return () => {
-      if (searchTimeout.current) {
-        clearTimeout(searchTimeout.current)
-      }
-    }
-  }, [searchTerm, sortOrder, entries])
-
-  // Function to filter and sort entries
   const filterAndSortEntries = (search: string, order: string): void => {
     let result = [...entries]
 
@@ -162,6 +141,25 @@ export function DictionaryModal(): React.ReactElement {
 
     setFilteredEntries(result)
   }
+
+  // Effect for search with debounce
+  useEffect(() => {
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current)
+    }
+
+    searchTimeout.current = setTimeout(() => {
+      filterAndSortEntries(searchTerm, sortOrder)
+    }, 300) // 300ms delay
+
+    return () => {
+      if (searchTimeout.current) {
+        clearTimeout(searchTimeout.current)
+      }
+    }
+  }, [searchTerm, sortOrder, entries, filterAndSortEntries])
+
+  // Function to filter and sort entries
 
   // Function to add a new entry
   const handleAddEntry = (): void => {

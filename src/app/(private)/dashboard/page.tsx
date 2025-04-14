@@ -1,13 +1,8 @@
 "use client"
 
 import { ArrowLeft, Trophy, Building2, BookOpen, MessageSquare, Music, Quote } from "lucide-react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ReactNode } from "react"
-
-interface DashboardPageProps {
-    onTabChange?: (tab: string) => void
-}
 
 interface LearningCardProps {
     icon: ReactNode
@@ -126,7 +121,7 @@ export default function DashboardPage() {
     )
 }
 
-function LearningCard({ icon, title, progress, bgColor, iconBgColor, tab }: LearningCardProps) {
+function LearningCard({ icon, title, progress, iconBgColor, tab }: LearningCardProps) {
     const router = useRouter();
 
     const handleTabChange = (tab: string): void => {

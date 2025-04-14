@@ -1,9 +1,8 @@
-"use client"
-import Image from "next/image"
+
 import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
-import { useRouter } from 'next/navigation'; // ✅ Correct pour /app
+// import { useRouter } from 'next/navigation'; // ✅ Correct pour /app
 import { CultureMenu } from "@/components/CultureMenu/CultureMenu"
 // Define necessary types
 type LanguageFeature = {
@@ -37,12 +36,6 @@ type NounFeature = {
     description: string;
 }
 
-type VocabularyOrigin = {
-    word: string;
-    meaning: string;
-    origin: string;
-}
-
 type SicilianExpression = {
     expression: string;
     meaning: string;
@@ -51,9 +44,7 @@ type SicilianExpression = {
 }
 
 export default function SicilianLanguagePage() {
-    
-    const router = useRouter();
-
+  
     const languageFeatures: LanguageFeature[] = [
         { text: "Distinct phonological system with unique consonant sounds" },
         { text: "Retention of Latin final vowels lost in standard Italian" },

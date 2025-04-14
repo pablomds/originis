@@ -1,7 +1,5 @@
 "use client"
-
-import { ArrowLeft, Globe, BookOpen, Clock, Users, MessageSquare, Play } from "lucide-react"
-import Button from '@mui/material/Button';
+import { ArrowLeft, Clock} from "lucide-react"
 import { JSX } from "react";
 import { useRouter } from "next/navigation";
 import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
@@ -34,7 +32,7 @@ export default function SicilianHistoryPage() {
                 {/* Back Button and Progress */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                     <button
-                        onClick={() => handleTabChange("overview")}
+                        onClick={() => handleTabChange("dashboard")}
                         className="flex items-center text-indigo-600 mb-4 md:mb-0"
                     >
                         <ArrowLeft className="h-5 w-5 mr-1" />

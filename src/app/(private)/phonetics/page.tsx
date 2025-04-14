@@ -2,38 +2,17 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Volume2, Mic, CheckCircle2, X, Info } from "lucide-react"
+import { ArrowLeft, Volume2, Info } from "lucide-react"
 import { CultureMenu } from "@/components/CultureMenu/CultureMenu"
 
 
 export default function PhoneticPage() {
   const [activeSection, setActiveSection] = useState<string>("vowels")
-  const [isRecording, setIsRecording] = useState<boolean>(false)
-  const [recordingFeedback, setRecordingFeedback] = useState<null | "success" | "error">(null)
 
   // Fonction pour jouer l'audio
   const playAudio = (audioId: string) => {
     console.log(`Playing audio: ${audioId}`)
     // Dans une vraie application, ceci jouerait un fichier audio
-  }
-
-  // Fonction pour simuler l'enregistrement
-  const toggleRecording = () => {
-    if (isRecording) {
-      // Simuler la fin d'enregistrement et l'analyse
-      setTimeout(() => {
-        // Simuler un résultat aléatoire (succès ou erreur)
-        const isSuccess = Math.random() > 0.3
-        setRecordingFeedback(isSuccess ? "success" : "error")
-
-        // Réinitialiser après quelques secondes
-        setTimeout(() => {
-          setRecordingFeedback(null)
-        }, 3000)
-      }, 1000)
-    }
-
-    setIsRecording(!isRecording)
   }
 
   return (
