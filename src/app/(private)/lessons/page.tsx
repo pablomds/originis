@@ -607,7 +607,8 @@ export default function LessonsPage() {
       <div className="flex-grow bg-indigo-50">
         <div className="container mx-auto px-4 py-8">
           {/* Back button, title and progress */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-center mb-8">
+            <div className="max-w-6xl w-full mx-auto flex justify-between">
             <Link
               href="/dashboard"
               className="flex items-center text-indigo-700 hover:text-indigo-900 transition-colors"
@@ -626,6 +627,7 @@ export default function LessonsPage() {
                 <Progress value={progressPercentage} className="h-2" />
               </div>
             </div>
+          </div>
           </div>
 
           {/* Chapters */}

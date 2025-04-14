@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Trophy, Building2, BookOpen, MessageSquare, Music, Quote } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ReactNode } from "react"
 
 interface DashboardPageProps {
@@ -14,6 +15,7 @@ interface LearningCardProps {
     progress: number
     bgColor: string
     iconBgColor: string
+    tab: string
 }
 
 interface PartnerCardProps {
@@ -22,14 +24,14 @@ interface PartnerCardProps {
     imageSrc?: string
 }
 
-export default function DashboardPage({ onTabChange }: DashboardPageProps) {
-    // Fonction pour gérer le changement d'onglet
-    const handleTabChange = (tab: string) => {
-        if (onTabChange) {
-            onTabChange(tab)
-        }
-    }
+export default function DashboardPage() {
 
+    const router = useRouter();
+
+    const handleTabChange = (tab: string): void => {
+        router.push(tab);
+    }
+    
     return (
         <div className="min-h-screen bg-[#f5f7ff]">
             {/* Main Content */}
@@ -65,6 +67,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={40}
                             bgColor="bg-amber-100"
                             iconBgColor="bg-amber-50"
+                            tab="culture"
                         />
                         <LearningCard
                             icon={<BookOpen className="h-6 w-6 text-green-600" />}
@@ -72,6 +75,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={80}
                             bgColor="bg-green-100"
                             iconBgColor="bg-green-50"
+                            tab="lessons"
                         />
                         <LearningCard
                             icon={<MessageSquare className="h-6 w-6 text-teal-600" />}
@@ -79,6 +83,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={30}
                             bgColor="bg-teal-100"
                             iconBgColor="bg-teal-50"
+                            tab=""
                         />
                         <LearningCard
                             icon={<Music className="h-6 w-6 text-green-600" />}
@@ -86,6 +91,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={20}
                             bgColor="bg-green-100"
                             iconBgColor="bg-green-50"
+                            tab=""
                         />
                         <LearningCard
                             icon={<Quote className="h-6 w-6 text-green-600" />}
@@ -93,6 +99,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={60}
                             bgColor="bg-green-100"
                             iconBgColor="bg-green-50"
+                            tab=""
                         />
                         <LearningCard
                             icon={<Quote className="h-6 w-6 text-pink-600" />}
@@ -100,6 +107,7 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
                             progress={70}
                             bgColor="bg-pink-100"
                             iconBgColor="bg-pink-50"
+                            tab=""
                         />
                     </div>
                 </section>
@@ -118,9 +126,15 @@ export default function DashboardPage({ onTabChange }: DashboardPageProps) {
     )
 }
 
-function LearningCard({ icon, title, progress, bgColor, iconBgColor }: LearningCardProps) {
+function LearningCard({ icon, title, progress, bgColor, iconBgColor, tab }: LearningCardProps) {
+    const router = useRouter();
+
+    const handleTabChange = (tab: string): void => {
+        router.push(tab);
+    }
+
     return (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer" onClick={() => handleTabChange(tab)}>
             <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                     <div className={`${iconBgColor} p-2 rounded-full`}>{icon}</div>
@@ -136,6 +150,7 @@ function LearningCard({ icon, title, progress, bgColor, iconBgColor }: LearningC
 }
 
 function PartnerCard({ name, role, imageSrc }: PartnerCardProps) {
+    
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200     p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
