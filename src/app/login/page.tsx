@@ -1,8 +1,10 @@
 "use client"
 // pages/login.tsx
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { logInWithEmailAndPassword } from "@/lib/firebase-authentication";
 
 interface FormData {
   email: string;
@@ -11,6 +13,7 @@ interface FormData {
 }
 
 export default function Login(): JSX.Element {
+  const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
@@ -35,6 +38,8 @@ export default function Login(): JSX.Element {
     try {
       // Auth logic would go here
       console.log('Login attempt:', formData);
+      await logInWithEmailAndPassword(formData.email, formData.password);
+      route.push("/dashboard")
       // Redirect or show success message
     } catch (err: any) {
       setError(err.message || 'An error occurred during login');
