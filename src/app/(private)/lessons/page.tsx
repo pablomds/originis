@@ -1,9 +1,9 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
-import { Badge } from "@/components/ui/Badge"
-import { Progress } from "@/components/ui/Progress"
+import type React from "react";
+import { useState } from "react";
+import { Badge } from "@/components/ui/Badge";
+import { Progress } from "@/components/ui/Progress";
 import {
   Lock,
   Unlock,
@@ -23,10 +23,9 @@ import {
   GraduationCap,
   Paintbrush,
   Home,
-} from "lucide-react"
-import { cn } from "@/utils/utils"
-import Link from "next/link"
-import Image from "next/image"
+} from "lucide-react";
+import { cn } from "@/utils/utils";
+import Link from "next/link";
 
 // Define lesson type
 type Lesson = {
@@ -65,7 +64,8 @@ export default function LessonsPage() {
     {
       id: 1,
       title: "Basic Conversations",
-      description: "Learn essential phrases for everyday conversations in Sicilian",
+      description:
+        "Learn essential phrases for everyday conversations in Sicilian",
       icon: MessageCircle,
       color: "from-blue-500 to-indigo-600",
       completed: false,
@@ -561,41 +561,50 @@ export default function LessonsPage() {
         },
       ],
     },
-  ])
+  ]);
 
   // Toggle chapter expansion
   const toggleChapter = (chapterId: number) => {
     setChapters(
-      chapters.map((chapter) => (chapter.id === chapterId ? { ...chapter, expanded: !chapter.expanded } : chapter)),
-    )
-  }
+      chapters.map((chapter) =>
+        chapter.id === chapterId
+          ? { ...chapter, expanded: !chapter.expanded }
+          : chapter
+      )
+    );
+  };
 
   // Calculate overall progress
-  const totalLessons = chapters.reduce((total, chapter) => total + chapter.lessons.length, 0)
+  const totalLessons = chapters.reduce(
+    (total, chapter) => total + chapter.lessons.length,
+    0
+  );
   const completedLessons = chapters.reduce(
-    (total, chapter) => total + chapter.lessons.filter((lesson) => lesson.completed).length,
-    0,
-  )
-  const progressPercentage = (completedLessons / totalLessons) * 100
+    (total, chapter) =>
+      total + chapter.lessons.filter((lesson) => lesson.completed).length,
+    0
+  );
+  const progressPercentage = (completedLessons / totalLessons) * 100;
 
   // Function to handle clicking on a lesson
   const handleLessonClick = (chapterId: number, lessonId: number) => {
     // Only allow clicking on unlocked lessons
-    const chapter = chapters.find((c) => c.id === chapterId)
-    const lesson = chapter?.lessons.find((l) => l.id === lessonId)
+    const chapter = chapters.find((c) => c.id === chapterId);
+    const lesson = chapter?.lessons.find((l) => l.id === lessonId);
 
     if (chapter && !chapter.locked && lesson && !lesson.locked) {
-      console.log(`Opening lesson ${lessonId}: ${lesson.title.dialect} from chapter ${chapterId}`)
+      console.log(
+        `Opening lesson ${lessonId}: ${lesson.title.dialect} from chapter ${chapterId}`
+      );
       // Here you would navigate to the lesson page or open a modal
       // For now, we'll just log it
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
-   
       {/* Main content */}
-      <main className="flex-grow bg-indigo-50">
+      <div className="flex-grow bg-indigo-50">
         <div className="container mx-auto px-4 py-8">
           {/* Back button, title and progress */}
           <div className="flex items-center justify-between mb-8">
@@ -626,7 +635,7 @@ export default function LessonsPage() {
                 key={chapter.id}
                 className={cn(
                   "rounded-xl overflow-hidden transition-all duration-200 w-2/3",
-                  chapter.locked ? "opacity-60" : "",
+                  chapter.locked ? "opacity-60" : ""
                 )}
               >
                 {/* Chapter header */}
@@ -634,7 +643,7 @@ export default function LessonsPage() {
                   className={cn(
                     "bg-gradient-to-r p-5 text-white cursor-pointer",
                     chapter.locked ? "cursor-not-allowed" : "cursor-pointer",
-                    chapter.color,
+                    chapter.color
                   )}
                   onClick={() => !chapter.locked && toggleChapter(chapter.id)}
                 >
@@ -645,7 +654,9 @@ export default function LessonsPage() {
                       </div>
                       <div>
                         <h2 className="text-xl font-bold">{chapter.title}</h2>
-                        <p className="text-white/80 text-sm">{chapter.description}</p>
+                        <p className="text-white/80 text-sm">
+                          {chapter.description}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
@@ -655,12 +666,18 @@ export default function LessonsPage() {
                           <div
                             className="bg-white h-full"
                             style={{
-                              width: `${(chapter.lessons.filter((l) => l.completed).length / chapter.lessons.length) * 100}%`,
+                              width: `${
+                                (chapter.lessons.filter((l) => l.completed)
+                                  .length /
+                                  chapter.lessons.length) *
+                                100
+                              }%`,
                             }}
                           ></div>
                         </div>
                         <span className="text-sm">
-                          {chapter.lessons.filter((l) => l.completed).length}/{chapter.lessons.length}
+                          {chapter.lessons.filter((l) => l.completed).length}/
+                          {chapter.lessons.length}
                         </span>
                       </div>
 
@@ -685,7 +702,9 @@ export default function LessonsPage() {
                         onClick={() => handleLessonClick(chapter.id, lesson.id)}
                         className={cn(
                           "rounded-xl overflow-hidden transition-all duration-200",
-                          lesson.locked ? "opacity-60 cursor-not-allowed" : "cursor-pointer hover:scale-105",
+                          lesson.locked
+                            ? "opacity-60 cursor-not-allowed"
+                            : "cursor-pointer hover:scale-105"
                         )}
                       >
                         <div className={`${lesson.color} p-4 text-white`}>
@@ -706,8 +725,12 @@ export default function LessonsPage() {
                             </div>
                           </div>
 
-                          <h3 className="text-lg font-bold mt-3 mb-1 line-clamp-1">{lesson.title.dialect}</h3>
-                          <p className="text-white/80 text-sm italic mb-2 line-clamp-1">{lesson.title.translation}</p>
+                          <h3 className="text-lg font-bold mt-3 mb-1 line-clamp-1">
+                            {lesson.title.dialect}
+                          </h3>
+                          <p className="text-white/80 text-sm italic mb-2 line-clamp-1">
+                            {lesson.title.translation}
+                          </p>
 
                           <div className="flex justify-between items-center mt-2">
                             <Badge
@@ -721,7 +744,9 @@ export default function LessonsPage() {
                             {lesson.completed && lesson.score && (
                               <div className="flex items-center bg-white/20 rounded-full px-2 py-0.5">
                                 <Star className="h-3 w-3 mr-1 fill-white" />
-                                <span className="text-xs font-medium">{lesson.score}</span>
+                                <span className="text-xs font-medium">
+                                  {lesson.score}
+                                </span>
                               </div>
                             )}
                           </div>
@@ -734,7 +759,7 @@ export default function LessonsPage() {
             ))}
           </div>
         </div>
-      </main>
+      </div>
     </div>
-  )
+  );
 }
