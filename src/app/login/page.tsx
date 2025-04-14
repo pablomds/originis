@@ -1,7 +1,6 @@
 "use client"
 // pages/login.tsx
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -46,13 +45,7 @@ export default function Login(): JSX.Element {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-50 flex flex-col justify-center items-center px-4 font-['Inter']">
-      <Head>
-        <title>Login | Learn your local dialect</title>
-        <meta name="description" content="Log in to learn your local dialect with friends" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </Head>
-
+    <div className="min-h-screen bg-indigo-50 flex flex-col justify-center items-center px-4">
       <div className="bg-white rounded-3xl shadow-sm overflow-hidden sm:w-xs w-2xs">
         <div className="py-6 px-6">
           <div className="flex justify-center mb-4">

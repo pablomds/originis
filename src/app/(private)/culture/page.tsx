@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import {
     ArrowLeft,
     Globe,
@@ -12,9 +9,7 @@ import {
     Utensils,
     MessageSquare,
     Play,
-    User,
 } from "lucide-react"
-import { useRouter } from "next/navigation";
 import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
 
 interface CultureCardProps {
@@ -24,11 +19,6 @@ interface CultureCardProps {
 }
 
 export default function SicilianCulturePage() {
-    const router = useRouter();
-
-    const handleTabChange = (tab: string): void => {
-        router.push(tab);
-    }
 
     return (
         <div className="min-h-screen bg-[#f8f7ff]">

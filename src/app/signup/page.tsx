@@ -1,10 +1,9 @@
 "use client"
 // pages/signup.tsx
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 interface FormData {
   name: string;
@@ -65,13 +64,7 @@ export default function SignUp(): JSX.Element {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-50 flex flex-col justify-center items-center px-4 font-['Inter']">
-      <Head>
-        <title>Inscription | Apprendre votre dialecte local</title>
-        <meta name="description" content="Rejoignez-nous et apprenez votre dialecte local avec des amis" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </Head>
-
+    <div className="min-h-screen bg-indigo-50 flex flex-col justify-center items-center px-4">
       <div className="bg-white rounded-3xl shadow-sm overflow-hidden sm:w-xs w-2xs">
         <div className="py-6 px-6">
           <div className="flex justify-center mb-4">
