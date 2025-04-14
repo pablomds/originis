@@ -3,6 +3,8 @@
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { signUpWithEmailAndPassword } from '@/lib/firebase-authentication';
+import { createUser } from '@/controllers/usersController';
 // import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 interface FormData {
@@ -51,7 +53,10 @@ export default function SignUp(): JSX.Element {
     }
 
     try {
+      console.log("Data", formData)
       // Firebase integration would go here
+      await signUpWithEmailAndPassword(formData.email, formData.password);
+      await createUser(formData);
       // await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       console.log('Compte créé:', formData);
       // Redirect or show success message
