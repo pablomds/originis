@@ -157,7 +157,7 @@ function PartnerCard({ name, role, imageSrc }: PartnerCardProps) {
                     <p className="text-sm text-slate-500">{role}</p>
                 </div>
             </div>
-            <button className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-1.5 rounded-full text-sm cursor-pointer">Connect</button>
+            <button className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-1.5 rounded-full text-sm">Connect</button>
         </div>
     )
 }
