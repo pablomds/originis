@@ -129,7 +129,7 @@ function LearningCard({ icon, title, progress, iconBgColor, tab }: LearningCardP
     }
 
     return (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer" onClick={() => handleTabChange(tab)}>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleTabChange(tab)}>
             <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                     <div className={`${iconBgColor} p-2 rounded-full`}>{icon}</div>
@@ -147,7 +147,7 @@ function LearningCard({ icon, title, progress, iconBgColor, tab }: LearningCardP
 function PartnerCard({ name, role, imageSrc }: PartnerCardProps) {
     
     return (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200     p-4 flex items-center justify-between">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
                 <div className="h-12 w-12 rounded-full overflow-hidden">
                     <img src={imageSrc || "/placeholder.svg"} alt={name} className="h-full w-full object-cover" />
