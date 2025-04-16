@@ -1,12 +1,11 @@
 "use client"
-// pages/signup.tsx
+
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { signUpWithEmailAndPassword } from '@/lib/firebase-authentication';
+import { signUpWithEmailAndPassword, signInWithGoogle } from '@/lib/firebase-authentication';
 import { createUser } from '@/controllers/usersController';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 interface FormData {
   name: string;
@@ -62,6 +61,21 @@ export default function SignUp(): JSX.Element {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const user = await signInWithGoogle();
+      //TODO : Check if user is not created in database
+      if (user.email && user.displayName) {
+        const { email } = user ;
+        const name = user.displayName;
+        await createUser({email, name});
+      }
+      route.push("/dashboard");
+    } catch (error) {
+      console.error('Google login error:', error);
     }
   };
 
@@ -228,6 +242,7 @@ export default function SignUp(): JSX.Element {
 
             <div className="mt-4 grid grid-cols-2 gap-3">
               <button
+                onClick={handleGoogleLogin}
                 type="button"
                 className="w-full inline-flex justify-center items-center py-1.5 px-3 border border-gray-300 rounded-md shadow-sm bg-white text-xs font-medium text-gray-500 hover:bg-gray-50 hover:cursor-pointer"
               >
