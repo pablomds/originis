@@ -1,9 +1,11 @@
 "use client"
-// pages/signup.tsx
+
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signUpWithEmailAndPassword, signInWithGoogle } from '@/lib/firebase-authentication';
+import { createUser } from '@/controllers/usersController';
 
 interface FormData {
   name: string;
@@ -14,6 +16,7 @@ interface FormData {
 }
 
 export default function SignUp(): JSX.Element {
+  const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -37,7 +40,6 @@ export default function SignUp(): JSX.Element {
     setError('');
     setLoading(true);
 
-    // Validation
     if (formData.password !== formData.confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
       setLoading(false);
@@ -51,15 +53,29 @@ export default function SignUp(): JSX.Element {
     }
 
     try {
-      // Firebase integration would go here
-      // await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      console.log('Compte créé:', formData);
-      // Redirect or show success message
+      await signUpWithEmailAndPassword(formData.email, formData.password);
+      await createUser(formData);
+      route.push("/dashboard")
     } catch (err: any) {
       setError(err.message || 'Une erreur est survenue lors de la création du compte');
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const user = await signInWithGoogle();
+      //TODO : Check if user is not created in database
+      if (user.email && user.displayName) {
+        const { email } = user ;
+        const name = user.displayName;
+        await createUser({email, name});
+      }
+      route.push("/dashboard");
+    } catch (error) {
+      console.error('Google login error:', error);
     }
   };
 
@@ -226,6 +242,7 @@ export default function SignUp(): JSX.Element {
 
             <div className="mt-4 grid grid-cols-2 gap-3">
               <button
+                onClick={handleGoogleLogin}
                 type="button"
                 className="w-full inline-flex justify-center items-center py-1.5 px-3 border border-gray-300 rounded-md shadow-sm bg-white text-xs font-medium text-gray-500 hover:bg-gray-50 hover:cursor-pointer"
               >
