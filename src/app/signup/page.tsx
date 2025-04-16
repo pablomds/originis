@@ -2,6 +2,7 @@
 // pages/signup.tsx
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { signUpWithEmailAndPassword } from '@/lib/firebase-authentication';
 import { createUser } from '@/controllers/usersController';
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 export default function SignUp(): JSX.Element {
+  const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -39,7 +41,6 @@ export default function SignUp(): JSX.Element {
     setError('');
     setLoading(true);
 
-    // Validation
     if (formData.password !== formData.confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
       setLoading(false);
@@ -53,13 +54,9 @@ export default function SignUp(): JSX.Element {
     }
 
     try {
-      console.log("Data", formData)
-      // Firebase integration would go here
       await signUpWithEmailAndPassword(formData.email, formData.password);
       await createUser(formData);
-      // await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      console.log('Compte créé:', formData);
-      // Redirect or show success message
+      route.push("/dashboard")
     } catch (err: any) {
       setError(err.message || 'Une erreur est survenue lors de la création du compte');
       console.error(err);
