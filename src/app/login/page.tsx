@@ -36,11 +36,8 @@ export default function Login(): JSX.Element {
     setLoading(true);
 
     try {
-      // Auth logic would go here
-      console.log('Login attempt:', formData);
       await logInWithEmailAndPassword(formData.email, formData.password);
       route.push("/dashboard")
-      // Redirect or show success message
     } catch (err: any) {
       setError(err.message || 'An error occurred during login');
       console.error(err);
