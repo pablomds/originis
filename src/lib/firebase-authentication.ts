@@ -11,15 +11,24 @@ import {
   
   import { auth } from "@/lib/firebase";
   
-  const googleProvider = new GoogleAuthProvider();
-  
-  
+    
   const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error("Error occured : ", error);
+    const provider = new GoogleAuthProvider();
+  
+    const result = await signInWithPopup(auth, provider);
+    const idToken = await result.user.getIdToken();
+  
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken }),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Login failed');
     }
+  
+    return result.user;
   };
   
   const logInWithEmailAndPassword = async (
