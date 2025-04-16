@@ -25,33 +25,46 @@ import {
   const logInWithEmailAndPassword = async (
     email: string,
     password: string
-  ): Promise<
-  | { status: "success"; user: User }
-  | { status: "failed"; internalError: boolean }
-  > => {
-    try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-      return { status: "success", user }
-    } catch (error) {
-      console.error("Error Occured On logInWithEmailAndPassword() ", error);
-      return {
-        status: "failed",
-        internalError: true
-      }
-    }
+  ) => {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const idToken = await userCredential.user.getIdToken();
+  
+    await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ idToken }),
+    });
   };
   
   const signUpWithEmailAndPassword = async (
     email: string,
     password: string
-  ): Promise<string | void> => {
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      const uid = res.user.uid;
-      return uid;
-    } catch (error) {
-      console.error("Error On signUpWithEmailAndPassword() ", error);
+  ) => {
+
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const idToken = await userCredential.user.getIdToken();
+
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idToken }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Signup API failed");
     }
+
+    return userCredential;
+  };
+
+  const logOut = async () => {
+    await fetch('/api/logout', {
+      method: 'POST',
+    });
   };
   
   export const deleteAuthenticatedUser = async (user: User): Promise<void> => {
@@ -95,13 +108,12 @@ import {
     }
   };
   
-  const logout = () => signOut(auth);
   
   export {
     signInWithGoogle,
     logInWithEmailAndPassword,
     signUpWithEmailAndPassword,
     sendPasswordReset,
-    logout,
+    logOut,
     isLoggedIn,
   };
