@@ -23,10 +23,12 @@ export async function POST(req: Request) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       path: '/',
+      sameSite: 'lax'
     });
 
     return new Response(JSON.stringify({ status: 'signed_up' }), { status: 200 });
   } catch (err) {
+    console.log(err)
     return new Response(JSON.stringify({ error: 'Signup session failed' }), { status: 401 });
   }
 }
