@@ -19,7 +19,12 @@ export async function POST(req: Request) {
       sameSite: 'lax'
     });
 
-    return new Response(JSON.stringify({ status: 'success' }), { status: 200 });
+    return new Response('OK', {
+      status: 200,
+      headers: {
+        'Set-Cookie': `session=${sessionCookie}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${expiresIn / 1000}`,
+      },
+    });
   } catch (err) {
     console.log(err)
     return new Response(JSON.stringify({ error: 'Failed to create session' }), { status: 401 });
