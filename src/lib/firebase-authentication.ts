@@ -41,6 +41,7 @@ import {
     await fetch('/api/login', {
       method: 'POST',
       body: JSON.stringify({ idToken }),
+      credentials: 'include',
     });
   };
   
