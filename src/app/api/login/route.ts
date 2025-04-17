@@ -1,4 +1,4 @@
-'use server'
+export const runtime = 'nodejs';
 import { auth } from '@/utils/auth/firebase-admin';
 import { cookies } from 'next/headers';
 
