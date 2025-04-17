@@ -17,6 +17,7 @@ export async function POST(req: Request) {
     await authInstance.verifyIdToken(idToken);
 
     const sessionCookie = await authInstance.createSessionCookie(idToken, { expiresIn });
+    console.log('session cookie', sessionCookie)
     const cookiesStore = await cookies();
     cookiesStore.set('session', sessionCookie, {
       maxAge: expiresIn / 1000,
