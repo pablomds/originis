@@ -1,5 +1,6 @@
-import PublicLayout from "./public-layout";
 import { Music, BookText, MessagesSquare, Users, MapPin, Earth, Badge  } from 'lucide-react';
+import {useTranslations} from 'next-intl';
+import PublicLayout from "./public-layout";
 
 const ConnectWithNativesSpeakers = [
   {
@@ -94,13 +95,14 @@ function Card({ Icon, IconBgColor, title, description} : { Icon: React.ElementTy
 }
 
 export default function Home() {
+  const t = useTranslations('HomePage');
   return (
     <PublicLayout>
       <div className="bg-indigo-50 pl-[27px] pt-[42px] pb-[96px] md:pl-[96px] md:pb-0 pr-[25px] md:pr-0 text-left">
         <div className="flex flex-col md:flex-row md:items-center gap-y-[43px] md:gap-x-[95px]">
           <div className="flex flex-col gap-y-[13px] md:w-1/3">
             <h2 className="text-3xl md:text-5xl md:pb-[17px] font-semibold md:font-normal">
-              Discover and Learn Local Dialects and Cultures
+              {t('title')}
             </h2>
             <p className="text-lg md:text-[20px] md:pb-[38px] text-slate-600 font-medium">
               Connect with native speakers and immerse yourself in authentic

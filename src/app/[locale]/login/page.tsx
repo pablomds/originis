@@ -1,28 +1,23 @@
 "use client"
-
+// pages/login.tsx
 import { useState, ChangeEvent, FormEvent, JSX } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
-import { signUpWithEmailAndPassword, signInWithGoogle } from '@/lib/firebase-authentication';
-import { createUser } from '@/controllers/usersController';
+import { logInWithEmailAndPassword } from "@/lib/firebase-authentication";
 
 interface FormData {
-  name: string;
   email: string;
   password: string;
-  confirmPassword: string;
-  agreeToTerms: boolean;
+  rememberMe: boolean;
 }
 
-export default function SignUp(): JSX.Element {
+export default function Login(): JSX.Element {
   const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    agreeToTerms: false
+    rememberMe: false
   });
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,42 +35,14 @@ export default function SignUp(): JSX.Element {
     setError('');
     setLoading(true);
 
-    if (formData.password !== formData.confirmPassword) {
-      setError('Les mots de passe ne correspondent pas');
-      setLoading(false);
-      return;
-    }
-
-    if (!formData.agreeToTerms) {
-      setError('Vous devez accepter les conditions générales');
-      setLoading(false);
-      return;
-    }
-
     try {
-      await signUpWithEmailAndPassword(formData.email, formData.password);
-      await createUser(formData);
+      await logInWithEmailAndPassword(formData.email, formData.password);
       route.push("/dashboard")
     } catch (err: any) {
-      setError(err.message || 'Une erreur est survenue lors de la création du compte');
+      setError(err.message || 'An error occurred during login');
       console.error(err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      const user = await signInWithGoogle();
-      //TODO : Check if user is not created in database
-      if (user.email && user.displayName) {
-        const { email } = user ;
-        const name = user.displayName;
-        await createUser({email, name});
-      }
-      route.push("/dashboard");
-    } catch (error) {
-      console.error('Google login error:', error);
     }
   };
 
@@ -87,7 +54,7 @@ export default function SignUp(): JSX.Element {
             <div className="w-8 h-8 relative">
               <Image
                 src="/mascot.png"
-                alt="Mascotte"
+                alt="Mascot"
                 width={32}
                 height={32}
                 className="rounded-full"
@@ -95,15 +62,15 @@ export default function SignUp(): JSX.Element {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">Join Us Today!</h2>
+          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">Welcome Back!</h2>
           <p className="text-center text-gray-600 mb-4 text-xs">Learn your local dialect with friends</p>
 
           {/* Tabs */}
           <div className="flex justify-center mb-5">
-            <Link href="/login" className="px-3 py-1 text-gray-500 hover:text-gray-700 text-xs">
+            <Link href="/login" className="px-3 py-1 text-indigo-600 border-b-2 border-indigo-600 font-medium text-xs">
               Login
             </Link>
-            <Link href="/signup" className="px-3 py-1 text-indigo-600 border-b-2 border-indigo-600 font-medium text-xs">
+            <Link href="/signup" className="px-3 py-1 text-gray-500 hover:text-gray-700 text-xs">
               Sign Up
             </Link>
           </div>
@@ -118,27 +85,6 @@ export default function SignUp(): JSX.Element {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className='bg-indigo-50 rounded-2xl h-1/2'>
-              <div>
-                <label htmlFor="name" className="sr-only">Full Name</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Full name"
-                    className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
-                  />
-                </div>
-              </div>
-
               <div>
                 <label htmlFor="email" className="sr-only">Email address</label>
                 <div className="relative">
@@ -180,44 +126,26 @@ export default function SignUp(): JSX.Element {
                   />
                 </div>
               </div>
-
-              <div>
-                <label htmlFor="confirmPassword" className="sr-only">Confirm Password</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                    placeholder="Confirm password"
-                    className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
-                  />
-                </div>
-              </div>
             </div>
 
-            <div className="flex items-start">
-              <div className="flex items-center h-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <input
-                  id="agreeToTerms"
-                  name="agreeToTerms"
+                  id="rememberMe"
+                  name="rememberMe"
                   type="checkbox"
-                  checked={formData.agreeToTerms}
+                  checked={formData.rememberMe}
                   onChange={handleChange}
                   className="h-3 w-3 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded hover:cursor-pointer"
                 />
-              </div>
-              <div className="ml-2 text-xs">
-                <label htmlFor="agreeToTerms" className="text-gray-600">
-                  I agree to the <a href="/terms" className="text-indigo-600 hover:underline">Terms of Service</a> and <a href="/privacy" className="text-indigo-600 hover:underline">Privacy Policy</a>
+                <label htmlFor="rememberMe" className="ml-2 block text-xs text-gray-600">
+                  Remember me
                 </label>
+              </div>
+              <div className="text-xs">
+                <Link href="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  Forgot password?
+                </Link>
               </div>
             </div>
 
@@ -226,7 +154,7 @@ export default function SignUp(): JSX.Element {
               disabled={loading}
               className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-700 hover:cursor-pointer hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
+              {loading ? 'Logging in...' : 'Log in'}
             </button>
           </form>
 
@@ -242,7 +170,6 @@ export default function SignUp(): JSX.Element {
 
             <div className="mt-4 grid grid-cols-2 gap-3">
               <button
-                onClick={handleGoogleLogin}
                 type="button"
                 className="w-full inline-flex justify-center items-center py-1.5 px-3 border border-gray-300 rounded-md shadow-sm bg-white text-xs font-medium text-gray-500 hover:bg-gray-50 hover:cursor-pointer"
               >
@@ -269,9 +196,9 @@ export default function SignUp(): JSX.Element {
           </div>
 
           <p className="mt-4 text-center text-xs text-gray-600">
-            Already have an account?{' '}
-            <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Log in
+            Don't have an account?{' '}
+            <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+              Sign up for free
             </Link>
           </p>
         </div>

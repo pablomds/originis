@@ -22,6 +22,7 @@
     "firebase-admin": "^13.2.0",
     "lucide-react": "^0.487.0",
     "next": "15.2.4",
+    "next-intl": "^4.0.2",
     "radix-ui": "^1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
