@@ -216,7 +216,7 @@ export default function SignUp(): JSX.Element {
               </div>
               <div className="ml-2 text-xs">
                 <label htmlFor="agreeToTerms" className="text-gray-600">
-                  I agree to the <a href="/terms" className="text-indigo-600 hover:underline">Terms of Service</a> and <a href="/privacy" className="text-indigo-600 hover:underline">Privacy Policy</a>
+                  I agree to the <Link href="/terms" className="text-indigo-600 hover:underline">Terms of Service</Link> and <Link href="/privacy" className="text-indigo-600 hover:underline">Privacy Policy</Link>
                 </label>
               </div>
             </div>
