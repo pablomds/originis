@@ -31,6 +31,7 @@
         </li>
         <li><a href="#workflow">Workflow</a></li>
         <li><a href="#hotfix-on-production">Hotfix on Production</a></li>
+        <li> <a href="#clean-up-local-branches-already-merged">Clean up local branches already merged</a> </li>
         <li> <a href="#git-workflow-diagram">Git Workflow Diagram</a></li>
       </ul>
     </li>
@@ -150,6 +151,13 @@ Branches are created from master using clear prefixes to indicate their purpose:
 ### Hotfix on Production
 
 * In case of a production issue, a hotfix branch is created from production, tested, and merged back into both production and master.
+
+### Clean up local branches already merged 
+This command deletes local branches that have already been merged into production, helping keep your workspace clean and up-to-date. It excludes main branches like production, master, and the currently active branch.
+
+```sh 
+git fetch -p && git branch --merged origin/production | grep -vE '^\*|production|master|main' | xargs -r git branch -d
+```
 
 ### Git Workflow Diagram
 ![gitworkflowdiagram](https://i.postimg.cc/hG29JfxP/gitworkflow.png)
