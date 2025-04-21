@@ -1,61 +1,8 @@
-import PublicLayout from "./public-layout";
 import { Music, BookText, MessagesSquare, Users, MapPin, Earth, Badge  } from 'lucide-react';
+import {useTranslations} from 'next-intl';
+import PublicLayout from "./public-layout";
 
-const ConnectWithNativesSpeakers = [
-  {
-    gradientClass: "from-[#F5F3FF] to-pink-50",
-    buttonClassColor: "bg-purple-500 hover:bg-purple-600",
-    fullname: "Ghjiseppu C.",
-    dialect: "Corsican Speaker"
-  },
-  {
-    gradientClass: "from-[#EFF6FF] to-[#ECFDF5]",
-    buttonClassColor: "bg-blue-500 hover:bg-blue-600",
-    fullname: "Vincenzo B.",
-    dialect: "Sicilian Speaker"
-  },
-  {
-    gradientClass: "from-amber-50 to-[#FFF7ED]",
-    buttonClassColor: "bg-amber-500 hover:bg-amber-600",
-    fullname: "João S.",
-    dialect: "Caipira Speaker"
-  },
-  {
-    gradientClass: "from-[#FEF2F2] to-[#FFF7ED]",
-    buttonClassColor: "bg-red-500 hover:bg-red-600",
-    fullname: "Koffi L.",
-    dialect: "Lingala Speaker"
-  }
-];
-
-const LearningMethods = [
-  {
-    Icon: Music,
-    IconBgColor: "bg-[#EDE9FE]",
-    title: "Music",
-    description: "Learn through traditional songs and music"
-  },
-  {
-    Icon: BookText,
-    IconBgColor: "bg-[#DBEAFE]",
-    title: "Vocabulary",
-    description: "Discover new vocabulary everyday"
-  },
-  {
-    Icon: MessagesSquare,
-    IconBgColor: "bg-[#D1FAE5]",
-    title: "IA",
-    description: "Learn to discuss the dialect with an IA"
-  },
-  {
-    Icon: Users,
-    IconBgColor: "bg-[#FFEDD5]",
-    title: "Community",
-    description: "Connect with native speakers"
-  }
-];
-
-function CardConnectWithNativeSpeakers({gradientClass, buttonClassColor, fullname,  dialect } : { gradientClass: string, buttonClassColor: string, fullname: string, dialect: string }) {
+function CardConnectWithNativeSpeakers({gradientClass, buttonClassColor, fullname,  dialect, connect } : { gradientClass: string, buttonClassColor: string, fullname: string, dialect: string, connect: string }) {
   return (
     <div className={`bg-gradient-to-r ${gradientClass} flex flex-col items-center shadow-sm rounded-lg gap-y-4 px-[23px] md:px-[24px] pb-9 md:pb-[24px]`}>
       <div className="flex flex-col items-center pt-[56px] md:pt-[24px]">
@@ -69,7 +16,7 @@ function CardConnectWithNativeSpeakers({gradientClass, buttonClassColor, fullnam
         href="#"
         className={`${buttonClassColor} w-full rounded-[8px] py-2 text-center text-white`}
       >
-        Connect
+        {connect}
       </a>
     </div>
   );
@@ -94,23 +41,79 @@ function Card({ Icon, IconBgColor, title, description} : { Icon: React.ElementTy
 }
 
 export default function Home() {
+  const t = useTranslations('HomePage');
+  const LearningMethods = [
+    {
+      Icon: Music,
+      IconBgColor: "bg-[#EDE9FE]",
+      title: t('learn_through_different_methods.music.title'),
+      description: t('learn_through_different_methods.music.description')
+    },
+    {
+      Icon: BookText,
+      IconBgColor: "bg-[#DBEAFE]",
+      title: t('learn_through_different_methods.vocabulary.title'),
+      description: t('learn_through_different_methods.vocabulary.description')
+    },
+    {
+      Icon: MessagesSquare,
+      IconBgColor: "bg-[#D1FAE5]",
+      title: t('learn_through_different_methods.ia.title'),
+      description: t('learn_through_different_methods.ia.description')
+    },
+    {
+      Icon: Users,
+      IconBgColor: "bg-[#FFEDD5]",
+      title: t('learn_through_different_methods.community.title'),
+      description: t('learn_through_different_methods.community.description')
+    }
+  ];
+  const ConnectWithNativesSpeakers = [
+    {
+      gradientClass: "from-[#F5F3FF] to-pink-50",
+      buttonClassColor: "bg-purple-500 hover:bg-purple-600",
+      fullname: "Ghjiseppu C.",
+      dialect: t('connect_with_native_speakers.corsican_speaker'),
+      connect: t('connect_with_native_speakers.connect')
+    },
+    {
+      gradientClass: "from-[#EFF6FF] to-[#ECFDF5]",
+      buttonClassColor: "bg-blue-500 hover:bg-blue-600",
+      fullname: "Vincenzo B.",
+      dialect: t('connect_with_native_speakers.sicilian_speaker'),
+      connect: t('connect_with_native_speakers.connect')
+    },
+    {
+      gradientClass: "from-amber-50 to-[#FFF7ED]",
+      buttonClassColor: "bg-amber-500 hover:bg-amber-600",
+      fullname: "João S.",
+      dialect: t('connect_with_native_speakers.caipira_speaker'),
+      connect: t('connect_with_native_speakers.connect')
+    },
+    {
+      gradientClass: "from-[#FEF2F2] to-[#FFF7ED]",
+      buttonClassColor: "bg-red-500 hover:bg-red-600",
+      fullname: "Koffi L.",
+      dialect: t('connect_with_native_speakers.lingala_speaker'),
+      connect: t('connect_with_native_speakers.connect')
+    }
+  ];
   return (
     <PublicLayout>
       <div className="bg-indigo-50 pl-[27px] pt-[42px] pb-[96px] md:pl-[96px] md:pb-0 pr-[25px] md:pr-0 text-left">
         <div className="flex flex-col md:flex-row md:items-center gap-y-[43px] md:gap-x-[95px]">
           <div className="flex flex-col gap-y-[13px] md:w-1/3">
             <h2 className="text-3xl md:text-5xl md:pb-[17px] font-semibold md:font-normal">
-              Discover and Learn Local Dialects and Cultures
+              {t('discover_and_learn_cultures.title')}
             </h2>
             <p className="text-lg md:text-[20px] md:pb-[38px] text-slate-600 font-medium">
-              Connect with native speakers and immerse yourself in authentic
-              local languages and cultures
+              {t('discover_and_learn_cultures.description')}
             </p>
             <a
               href="#"
               className="bg-indigo-600 hover:bg-indigo-700 w-[222px] py-4 text-white rounded-[8px] text-center font-semibold text-lg"
             >
-              Start Learning Now
+              {t('discover_and_learn_cultures.a')}
             </a>
           </div>
           <div className="flex justify-center md:w-2/3 md:justify-end">
@@ -130,24 +133,25 @@ export default function Home() {
       <div className="pt-[55px] md:pt-[64px] px-[23px] md:px-[80px] pb-[77px]">
         <div className="flex flex-col gap-y-[55px]">
           <h2 className="text-[28px] md:text-3xl font-semibold text-center">
-            Choose Your Interest
+            {t('choose_your_interest.title')}
           </h2>
           <div className="flex flex-col md:flex-row md:justify-center gap-y-6 md:gap-x-[32px]">
             <div className="bg-gradient-to-r from-[#FDF2F8] to-[#F5F3FF] shadow-md rounded-[8px] md:w-[26rem]">
               <div className="pt-[70px] md:pt-[24px] pb-[28px] md:pb-[24px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                 <div className="flex flex-row items-center gap-x-2">
                   <MapPin size={24} />
-                  <h3 className="font-semibold text-xl">Local Dialects</h3>
+                  <h3 className="font-semibold text-xl">{t('choose_your_interest.local_dialects.title')}</h3>
                 </div>
                 <p className="text-slate-600 text-sm md:text-base font-normal">
-                  Learn the unique expressions and traditions of the local
-                  dialect of your choice
+                  {
+                    t('choose_your_interest.local_dialects.description')
+                  }
                 </p>
                 <a
                   href="#"
                   className="h-[42px] bg-pink-500 hover:bg-pink-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                 >
-                  View
+                  {t('choose_your_interest.local_dialects.a')}
                 </a>
               </div>
             </div>
@@ -155,17 +159,16 @@ export default function Home() {
               <div className="pt-[70px] md:pt-[24px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                 <div className="flex flex-row items-center gap-x-2">
                   <Earth size={24} />
-                  <h3 className="font-semibold text-xl">Old Languages</h3>
+                  <h3 className="font-semibold text-xl">{t('choose_your_interest.old_languages.title')}</h3>
                 </div>
                 <p className="text-slate-600 text-sm md:text-base font-medium md:w-11/12">
-                  Discover old languages and get a little bit closer of your
-                  ancestors
+                  {t('choose_your_interest.old_languages.description')}
                 </p>
                 <a
                   href=""
                   className="h-[42px] bg-blue-500 hover:bg-blue-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                 >
-                  View
+                  {t('choose_your_interest.old_languages.a')}
                 </a>
               </div>
             </div>
@@ -173,16 +176,16 @@ export default function Home() {
               <div className="pt-[70px] md:pt-[24px] pb-[28px] pl-[24px] pr-[27px] flex flex-col gap-y-[17px]">
                 <div className="flex flex-row items-center gap-x-2">
                   <Badge size={24} />
-                  <h3 className="font-semibold text-xl">Learn Cultures</h3>
+                  <h3 className="font-semibold text-xl">{t('choose_your_interest.learn_cultures.title')}</h3>
                 </div>
                 <p className="text-slate-600 text-sm md:text-base font-medium md:w-11/12">
-                  Explore plenty of local cultures, history and languages
+                  {t('choose_your_interest.learn_cultures.description')}
                 </p>
                 <a
                   href=""
                   className="h-[42px] bg-amber-500 hover:bg-amber-600 rounded-[6px] text-white flex items-center justify-center text-lg font-semibold"
                 >
-                  View
+                  {t('choose_your_interest.learn_cultures.a')}
                 </a>
               </div>
             </div>
@@ -192,7 +195,7 @@ export default function Home() {
       <div className="pt-[65px] pl-[39px] pr-[29px] md:px-[96px] bg-indigo-50">
         <div className="flex flex-col gap-y-[56px] md:gap-y-[43px]">
           <h2 className="text-[28px] font-bold text-center text-2xl">
-            Learn Through Different Methods
+            {t('learn_through_different_methods.title')}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-[49px] md:gap-x-[32px] pb-[94px] md:pb-[45px]">
             {LearningMethods.map((item, index) => (
@@ -219,6 +222,7 @@ export default function Home() {
               buttonClassColor={item.buttonClassColor}
               fullname={item.fullname}
               dialect={item.dialect}
+              connect={item.connect}
             />
           ))}
         </div>

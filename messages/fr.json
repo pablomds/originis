@@ -1,0 +1,75 @@
+{
+  "NavbarPublic": {
+    "login": "Connexion",
+    "signup": "S'inscrire"
+  },
+  "FooterPublic": {
+    "connecting_communities_through_language_and_culture": "Connecter les communautés à travers la langue et la culture",
+    "quick_links": {
+      "title": "Liens rapides",
+      "about_us": "À propos de nous",
+      "our_dialects": "Nos dialectes",
+      "community": "Communauté",
+      "contact": "Contact"
+    },
+    "follow_us": "Suivez-nous",
+    "newsletter": {
+      "title": "Newsletter",
+      "email_placeholder": "Votre email",
+      "subscribe": "S'abonner"
+    },
+    "all_rights_reserved": "Tous droits réservés."
+  },
+  "HomePage": {
+    "discover_and_learn_cultures": {
+      "title": "Découvrez et apprenez les dialectes et cultures locales",
+      "description": "Connectez-vous avec des locuteurs natifs et immergez-vous dans des langues et des cultures locales authentiques",
+      "a": "Démarrer maintenant"
+    },
+    "choose_your_interest": {
+      "title": "Choisissez vos intérêts",
+      "local_dialects": {
+        "title": "Dialects locaux",
+        "description": "Apprenez les expressions et les traditions uniques du dialecte local de votre choix.",
+        "a": "Voir"
+      },
+      "old_languages": {
+        "title": "Langues anciennes",
+        "description": "Découvrez les langues anciennes et rapprochez-vous de vos ancêtres.",
+        "a": "Voir"
+      },
+      "learn_cultures": {
+        "title": "Apprendre les cultures",
+        "description": "Découvrir les cultures, l'histoire et les langues locales",
+        "a": "Voir"
+      }
+    },
+    "learn_through_different_methods": {
+      "title": "Apprendre avec différentes méthodes",
+      "music": {
+        "title": "Musique",
+        "description": "Apprendre à travers des chansons traditionnelles et de la musique moderne"
+      },
+      "vocabulary": {
+        "title": "Vocabulaire",
+        "description": "Maîtriser les mots et expressions essentiels"
+      },
+      "ia": {
+        "title": "IA",
+        "description": "Apprendre à discuter du dialecte avec une AI"
+      },
+      "community": {
+        "title": "Communauté",
+        "description": "Se connecter avec des locuteurs natifs"
+      }
+    },
+    "connect_with_native_speakers": {
+      "title": "Connectez-vous avec des locuteurs natifs",
+      "corsican_speaker": "Locuteur corse",
+      "sicilian_speaker": "Locuteur sicilien",
+      "caipira_speaker": "Locuteur caipira",
+      "lingala_speaker": "Locuteur lingala",
+      "connect": "Connecter"
+    }
+  }
+}
