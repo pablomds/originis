@@ -20,6 +20,80 @@
     },
     "all_rights_reserved": "Tous droits réservés."
   },
+  "LoginPage": {
+    "welcome_back": {
+      "title": "Content de vous revoir !",
+      "description": "Apprendre le dialecte local avec des amis"
+    },
+    "tabs": {
+      "login": "Connexion",
+      "signup": "S'inscrire"
+    },
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Addresse email"
+      },
+      "password": {
+        "label": "Mot de passe",
+        "placeholder": "Mot de passe"
+      },
+      "login_button":{
+        "loading": "Chargement...",
+        "login": "Connexion"
+      },
+      "remember_me": "Se souvenir",
+      "forgot_password": "Mot de passe oublié?",
+      "or_continue_with": "Ou poursuivre avec",
+      "signup_link": {
+        "title": "Vous n'avez pas de compte ?",
+        "description": "S'inscrire gratuitement"
+      }
+    }
+  },
+  "SignUpPage": {
+    "join_us_today": {
+      "title": "Rejoignez-nous dès aujourd'hui !",
+      "description": "Apprendre le dialecte local avec des amis"
+    },
+    "tabs": {
+      "login": "Connexion",
+      "signup": "S'inscrire"
+    },
+    "form": {
+      "full_name": {
+        "label": "Nom complet",
+        "placeholder": "Nom complet"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Addresse email"
+      },
+      "password": {
+        "label": "Mot de passe",
+        "placeholder": "Mot de passe"
+      },
+      "confirm_password": {
+        "label": "Confirmer le mot de passe",
+        "placeholder": "Confirmer le mot de passe"
+      },
+      "terms_and_conditions": {
+        "i_agree_to_the": "J'accepte les",
+        "terms_of_service": "conditions d'utilisation",
+        "and": "et",
+        "privacy_policy": "la politique de confidentialité"
+      },
+      "signup_button":{
+        "creating_account": "Création du compte...",
+        "create_account": "Créer un compte"
+      },
+      "or_continue_with": "Ou poursuivre avec",
+      "login_link": {
+        "title": "Vous avez déjà un compte ? ",
+        "description": "Se connecter"
+      }
+    }
+  },
   "HomePage": {
     "discover_and_learn_cultures": {
       "title": "Découvrez et apprenez les dialectes et cultures locales",

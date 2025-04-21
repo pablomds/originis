@@ -20,6 +20,80 @@
     },
     "all_rights_reserved": "All rights reserved."
   },
+  "LoginPage": {
+    "welcome_back": {
+      "title": "Welcome Back!",
+      "description": "Learn your local dialect with friends"
+    },
+    "tabs": {
+      "login": "Login",
+      "signup": "Sign Up"
+    },
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Email address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Password"
+      },
+      "login_button":{
+        "loading": "Loading...",
+        "login": "Login"
+      },
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot password?",
+      "or_continue_with": "Or continue with",
+      "signup_link": {
+        "title": "Don't have an account?",
+        "description": "Sign up for free"
+      }
+    }
+  },
+  "SignUpPage": {
+    "join_us_today": {
+      "title": "Join us today!",
+      "description": "Learn your local dialect with friends"
+    },
+    "tabs": {
+      "login": "Login",
+      "signup": "Sign Up"
+    },
+    "form": {
+      "full_name": {
+        "label": "Full name",
+        "placeholder": "Full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Password"
+      },
+      "confirm_password": {
+        "label": "Confirm Password",
+        "placeholder": "Confirm Password"
+      },
+      "terms_and_conditions": {
+        "i_agree_to_the": "I agree to the",
+        "terms_of_service": "Terms of Service",
+        "and": "and",
+        "privacy_policy": "Privacy Policy"
+      },
+      "signup_button":{
+        "creating_account": "Creating Account...",
+        "create_account": "Create Account"
+      },
+      "or_continue_with": "Or continue with",
+      "login_link": {
+        "title": "Already have an account?",
+        "description": "Login"
+      }
+    }
+  },
   "HomePage": {
     "discover_and_learn_cultures": {
       "title": "Discover and Learn Local Dialects and cultures",
