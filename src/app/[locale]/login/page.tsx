@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { logInWithEmailAndPassword } from "@/lib/firebase-authentication";
+import {useTranslations} from 'next-intl';
 
 interface FormData {
   email: string;
@@ -13,6 +14,7 @@ interface FormData {
 }
 
 export default function Login(): JSX.Element {
+  const t = useTranslations('LoginPage')
   const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -62,16 +64,16 @@ export default function Login(): JSX.Element {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">Welcome Back!</h2>
-          <p className="text-center text-gray-600 mb-4 text-xs">Learn your local dialect with friends</p>
+          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">{t('welcome_back.title')}</h2>
+          <p className="text-center text-gray-600 mb-4 text-xs">{t('welcome_back.description')}</p>
 
           {/* Tabs */}
           <div className="flex justify-center mb-5">
             <Link href="/login" className="px-3 py-1 text-indigo-600 border-b-2 border-indigo-600 font-medium text-xs">
-              Login
+              {t('tabs.login')}
             </Link>
             <Link href="/signup" className="px-3 py-1 text-gray-500 hover:text-gray-700 text-xs">
-              Sign Up
+            {t('tabs.signup')}
             </Link>
           </div>
 
@@ -86,7 +88,7 @@ export default function Login(): JSX.Element {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className='bg-indigo-50 rounded-2xl h-1/2'>
               <div>
-                <label htmlFor="email" className="sr-only">Email address</label>
+                <label htmlFor="email" className="sr-only">{t('form.email.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,14 +102,14 @@ export default function Login(): JSX.Element {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="Email address"
+                    placeholder={t('form.email.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="sr-only">Password</label>
+                <label htmlFor="password" className="sr-only">{t('form.password.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,7 +123,7 @@ export default function Login(): JSX.Element {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    placeholder="Password"
+                    placeholder={t('form.password.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
@@ -139,12 +141,12 @@ export default function Login(): JSX.Element {
                   className="h-3 w-3 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded hover:cursor-pointer"
                 />
                 <label htmlFor="rememberMe" className="ml-2 block text-xs text-gray-600">
-                  Remember me
+                  {t('form.remember_me')}
                 </label>
               </div>
               <div className="text-xs">
                 <Link href="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot password?
+                  {t('form.forgot_password')}
                 </Link>
               </div>
             </div>
@@ -154,7 +156,7 @@ export default function Login(): JSX.Element {
               disabled={loading}
               className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-700 hover:cursor-pointer hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {loading ? 'Logging in...' : 'Log in'}
+              {loading ? t('form.login_button.loading') : t('form.login_button.login')}
             </button>
           </form>
 
@@ -164,7 +166,7 @@ export default function Login(): JSX.Element {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-xs">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">{t('form.or_continue_with')}</span>
               </div>
             </div>
 
@@ -196,9 +198,9 @@ export default function Login(): JSX.Element {
           </div>
 
           <p className="mt-4 text-center text-xs text-gray-600">
-            Don't have an account?{' '}
+            {t('form.signup_link.title')}
             <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Sign up for free
+              {t('form.signup_link.description')}
             </Link>
           </p>
         </div>
