@@ -21,7 +21,7 @@
       </ul>
     </li>
     <li>
-      <a href="#git-workflow overview">Git Workflow Overview</a>
+      <a href="#git-workflow-overview">Git Workflow Overview</a>
       <ul>
         <li>
           <a href="#main-branches">Main Branches</a>
