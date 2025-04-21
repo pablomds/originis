@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { signUpWithEmailAndPassword, signInWithGoogle } from '@/lib/firebase-authentication';
 import { createUser } from '@/controllers/usersController';
+import {useTranslations} from 'next-intl';
 
 interface FormData {
   name: string;
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 export default function SignUp(): JSX.Element {
+  const t = useTranslations('SignUpPage');
   const route = useRouter()
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -95,16 +97,16 @@ export default function SignUp(): JSX.Element {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">Join Us Today!</h2>
-          <p className="text-center text-gray-600 mb-4 text-xs">Learn your local dialect with friends</p>
+          <h2 className="text-xl font-bold text-center text-gray-900 mb-1">{t('join_us_today.title')}</h2>
+          <p className="text-center text-gray-600 mb-4 text-xs">{t('join_us_today.description')}</p>
 
           {/* Tabs */}
           <div className="flex justify-center mb-5">
             <Link href="/login" className="px-3 py-1 text-gray-500 hover:text-gray-700 text-xs">
-              Login
+              {t('tabs.login')}
             </Link>
             <Link href="/signup" className="px-3 py-1 text-indigo-600 border-b-2 border-indigo-600 font-medium text-xs">
-              Sign Up
+              {t('tabs.signup')}
             </Link>
           </div>
 
@@ -119,7 +121,7 @@ export default function SignUp(): JSX.Element {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className='bg-indigo-50 rounded-2xl h-1/2'>
               <div>
-                <label htmlFor="name" className="sr-only">Full Name</label>
+                <label htmlFor="name" className="sr-only">{t('form.full_name.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -133,14 +135,14 @@ export default function SignUp(): JSX.Element {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="Full name"
+                    placeholder={t('form.full_name.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="sr-only">Email address</label>
+                <label htmlFor="email" className="sr-only">{t('form.email.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -154,14 +156,14 @@ export default function SignUp(): JSX.Element {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="Email address"
+                    placeholder={t('form.email.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="sr-only">Password</label>
+                <label htmlFor="password" className="sr-only">{t('form.password.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -175,14 +177,14 @@ export default function SignUp(): JSX.Element {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    placeholder="Password"
+                    placeholder={t('form.password.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="sr-only">Confirm Password</label>
+                <label htmlFor="confirmPassword" className="sr-only">{t('form.confirm_password.label')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -196,7 +198,7 @@ export default function SignUp(): JSX.Element {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
-                    placeholder="Confirm password"
+                    placeholder={t('form.confirm_password.placeholder')}
                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border-0 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-indigo-50"
                   />
                 </div>
@@ -216,7 +218,7 @@ export default function SignUp(): JSX.Element {
               </div>
               <div className="ml-2 text-xs">
                 <label htmlFor="agreeToTerms" className="text-gray-600">
-                  I agree to the <Link href="/terms" className="text-indigo-600 hover:underline">Terms of Service</Link> and <Link href="/privacy" className="text-indigo-600 hover:underline">Privacy Policy</Link>
+                  {t('form.terms_and_conditions.i_agree_to_the')} <Link href="/terms" className="text-indigo-600 hover:underline">{t('form.terms_and_conditions.terms_of_service')}</Link> {t('form.terms_and_conditions.and')} <Link href="/privacy" className="text-indigo-600 hover:underline">{t('form.terms_and_conditions.privacy_policy')}</Link>
                 </label>
               </div>
             </div>
@@ -226,7 +228,7 @@ export default function SignUp(): JSX.Element {
               disabled={loading}
               className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-700 hover:cursor-pointer hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
+              {loading ? t('form.signup_button.creating_account') : t('form.signup_button.create_account')}
             </button>
           </form>
 
@@ -236,7 +238,7 @@ export default function SignUp(): JSX.Element {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-xs">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">{t('form.or_continue_with')}</span>
               </div>
             </div>
 
@@ -269,9 +271,9 @@ export default function SignUp(): JSX.Element {
           </div>
 
           <p className="mt-4 text-center text-xs text-gray-600">
-            Already have an account?{' '}
+            {t('form.login_link.title')}
             <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Log in
+              {t('form.login_link.description')}
             </Link>
           </p>
         </div>
