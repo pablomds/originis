@@ -20,6 +20,9 @@
     },
     "all_rights_reserved": "Tous droits réservés."
   },
+  "FooterPrivate": {
+    "all_rights_reserved": "Tous droits réservés."
+  },
   "LoginPage": {
     "welcome_back": {
       "title": "Content de vous revoir !",
