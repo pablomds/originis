@@ -145,5 +145,102 @@
       "lingala_speaker": "Locuteur lingala",
       "connect": "Connecter"
     }
+  },
+  "DashboardPage": {
+    "daily_challenge": {
+      "title": "Défi quotidien",
+      "description": "Relevez le défi d'aujourd'hui pour gagner des points supplémentaires !"
+    },
+    "continue_learning": {
+      "title": "Continuer l'apprentissage",
+      "culture": "Culture",
+      "lessons": "Leçons",
+      "ia_chat": "IA Chat",
+      "songs": "Chansons",
+      "phonetic": "Phonétique",
+      "social_network": "Réseau social",
+      "complete": "Complet"
+    },
+    "pratice_partners": {
+      "title": "Partenaires de pratique",
+      "native_speaker": "Langue maternelle",
+      "advanced_speaker": "Niveau avancé"
+    }
+  },
+  "ChooseYourDialectPage": {
+    "my_lessons": {
+      "title": "Mes leçons",
+      "sicilian": {
+        "title": "Sicilien",
+        "region": "Italien"
+      },
+      "corsican": {
+        "title": "Corse",
+        "region": "Méditerranée"
+      },
+      "algerian": {
+        "title": "Algérien",
+        "region": "Afrique du Nord"
+      },
+      "learners": "Apprenants"
+    },
+    "choose_your_dialect": {
+      "title": "Choisissez votre dialecte",
+      "search_input": {
+        "placeholder": "Recherche d'un dialecte..."
+      },
+      "popular_dialects": {
+        "title": "Dialectes populaires",
+        "learners": "Apprenants",
+        "algerian": {
+          "title": "Algérien",
+          "region": "Afrique du Nord"
+        },
+        "egyptian": {
+          "title": "Égyptien",
+          "region": "Moyen-Orient"
+        },
+        "morrocan" : {
+          "title": "Marocain",
+          "region": "Afrique du Nord"
+        }
+      }
+    },
+    "all_dialects" : {
+      "title": "Tous les dialectes",
+      "learners": "Apprenants",
+      "algerian": {
+        "title": "Algérien",
+        "region": "Afrique du Nord"
+      },
+      "egyptian": {
+        "title": "Égyptien",
+        "region": "Moyen-Orient"
+      },
+      "morrocan" : {
+        "title": "Marocain",
+        "region": "Afrique du Nord"
+      },
+      "lebanese": {
+        "title": "Libanais",
+        "region": "Moyen-Orient"
+      },
+      "tunisian": {
+        "title": "Tunisien",
+        "region": "Afrique du Nord"
+      },
+      "syrian": {
+        "title": "Syrien",
+        "region": "Moyen-Orient"
+      },
+      "sicilian": {
+        "title": "Sicilien",
+        "region": "Italien"
+      },
+      "corsican": {
+        "title": "Corse",
+        "region": "Méditerranée"
+      }
+    }
   }
 }

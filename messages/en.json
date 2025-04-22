@@ -20,6 +20,9 @@
     },
     "all_rights_reserved": "All rights reserved."
   },
+  "FooterPrivate": {
+    "all_rights_reserved": "All rights reserved."
+  },
   "LoginPage": {
     "welcome_back": {
       "title": "Welcome Back!",
@@ -144,6 +147,103 @@
       "caipira_speaker": "Caipira Speaker",
       "lingala_speaker": "Lingala Speaker",
       "connect": "Connect"
+    }
+  },
+  "DashboardPage": {
+    "daily_challenge": {
+      "title": "Daily Challenge",
+      "description": "Complete today's challenge to earn extra points!"
+    },
+    "continue_learning": {
+      "title": "Continue Learning",
+      "culture": "Culture",
+      "lessons": "Lessons",
+      "ia_chat": "IA Chat",
+      "songs": "Songs",
+      "phonetic": "Phonetic",
+      "social_network": "Social Network",
+      "complete": "Complete"
+    },
+    "pratice_partners": {
+      "title": "Practice Partners",
+      "native_speaker": "Native Speaker",
+      "advanced_speaker": "Advanced Speaker"
+    }
+  },
+  "ChooseYourDialectPage": {
+    "my_lessons": {
+      "title": "My Lessons",
+      "sicilian": {
+        "title": "Sicilian",
+        "region": "Italian"
+      },
+      "corsican": {
+        "title": "Corsican",
+        "region": "Mediterranean"
+      },
+      "algerian": {
+        "title": "Algerian",
+        "region": "North African"
+      },
+      "learners": "Learners"
+    },
+    "choose_your_dialect": {
+      "title": "Choose your dialect",
+      "search_input": {
+        "placeholder": "Search for a dialect..."
+      },
+      "popular_dialects": {
+        "title": "Popular Dialects",
+        "learners": "Learners",
+        "algerian": {
+          "title": "Algerian",
+          "region": "North African"
+        },
+        "egyptian": {
+          "title": "Egyptian",
+          "region": "Middle Eastern"
+        },
+        "morrocan" : {
+          "title": "Morrocan",
+          "region": "North African"
+        }
+      }
+    },
+    "all_dialects" : {
+      "title": "All Dialects",
+      "learners": "Learners",
+      "algerian": {
+        "title": "Algerian",
+        "region": "North African"
+      },
+      "egyptian": {
+        "title": "Egyptian",
+        "region": "Middle Eastern"
+      },
+      "morrocan" : {
+        "title": "Morrocan",
+        "region": "North African"
+      },
+      "lebanese": {
+        "title": "Lebanese",
+        "region": "Middle Eastern"
+      },
+      "tunisian": {
+        "title": "Tunisian",
+        "region": "North African"
+      },
+      "syrian": {
+        "title": "Syrian",
+        "region": "Middle Eastern"
+      },
+      "sicilian": {
+        "title": "Sicilian",
+        "region": "Italian"
+      },
+      "corsican": {
+        "title": "Corsican",
+        "region": "Mediterranean"
+      }
     }
   }
 }

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { Search, Star, Heart, Globe, Moon, Flame } from "lucide-react"
 import { ReactNode } from "react"
+import { useTranslations } from "next-intl"
 
 interface DialectCardProps {
     icon: ReactNode
@@ -13,6 +14,7 @@ interface DialectCardProps {
 }
 
 export default function DialectSelectionPage() {
+    const t = useTranslations("ChooseYourDialectPage");
     // Fonction pour gérer le changement d'onglet
     const router = useRouter();
     
@@ -26,40 +28,40 @@ export default function DialectSelectionPage() {
             <main className="container mx-auto px-4 py-6 max-w-6xl">
                 {/* My Lessons */}
                 <section className="mb-10">
-                    <h2 className="text-xl font-bold mb-6">My lessons</h2>
+                    <h2 className="text-xl font-bold mb-6">{t('my_lessons.title')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <DialectCard
                             icon={<Star className="h-5 w-5" />}
-                            name="Sicilian"
-                            region="Italian"
-                            learners="12K Learners"
+                            name={t('my_lessons.sicilian.title')}
+                            region={t('my_lessons.sicilian.region')}
+                            learners={"12K " + t('my_lessons.learners')}
                             onClick={() => handleTabChange("dashboard")}
                         />
                         <DialectCard
                             icon={<Star className="h-5 w-5" />}
-                            name="Corsican"
-                            region="Mediterranean"
-                            learners="12K Learners"
+                            name={t('my_lessons.corsican.title')}
+                            region={t('my_lessons.corsican.region')}
+                            learners={"12K " + t('my_lessons.learners')}
                         />
                         <DialectCard
                             icon={<Star className="h-5 w-5" />}
-                            name="Algerian"
-                            region="North African"
-                            learners="12K Learners"
+                            name={t('my_lessons.algerian.title')}
+                            region={t('my_lessons.algerian.region')}
+                            learners={"12K " + t('my_lessons.learners')}
                         />
                     </div>
                 </section>
 
                 {/* Choose Your Dialect */}
                 <section className="mb-10">
-                    <h2 className="text-xl font-bold mb-6">Choose Your Dialecte</h2>
+                    <h2 className="text-xl font-bold mb-6">{t('choose_your_dialect.title')}</h2>
                     <div className="relative mb-8">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <Search className="h-5 w-5 text-gray-400" />
                         </div>
                         <input
                             type="text"
-                            placeholder="Search for a dialecte..."
+                            placeholder={t('choose_your_dialect.search_input.placeholder')}
                             className="w-full pl-10 pr-4 py-3 bg-white rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         />
                     </div>
@@ -67,68 +69,68 @@ export default function DialectSelectionPage() {
 
                 {/* Popular Dialectes */}
                 <section className="mb-10">
-                    <h2 className="text-xl font-bold mb-6">Popular Dialectes</h2>
+                    <h2 className="text-xl font-bold mb-6">{t('choose_your_dialect.popular_dialects.title')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <DialectCard
                             icon={<Star className="h-5 w-5" />}
-                            name="Algerian"
-                            region="North African"
-                            learners="12K Learners"
+                            name={t('choose_your_dialect.popular_dialects.algerian.title')}
+                            region={t('choose_your_dialect.popular_dialects.algerian.region')}
+                            learners={"12K " + t('choose_your_dialect.popular_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Heart className="h-5 w-5" />}
-                            name="Egyptian"
-                            region="Middle Eastern"
-                            learners="15K Learners"
+                            name={t('choose_your_dialect.popular_dialects.egyptian.title')}
+                            region={t('choose_your_dialect.popular_dialects.egyptian.region')}
+                            learners={"15K " + t('choose_your_dialect.popular_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Globe className="h-5 w-5" />}
-                            name="Moroccan"
-                            region="North African"
-                            learners="10K Learners"
+                            name={t('choose_your_dialect.popular_dialects.morrocan.title')}
+                            region={t('choose_your_dialect.popular_dialects.morrocan.region')}
+                            learners={"17K " + t('choose_your_dialect.popular_dialects.learners')}
                         />
                     </div>
                 </section>
 
                 {/* All Dialectes */}
                 <section className="mb-10">
-                    <h2 className="text-xl font-bold mb-6">All Dialectes</h2>
+                    <h2 className="text-xl font-bold mb-6">{t('all_dialects.title')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <DialectCard
                             icon={<Moon className="h-5 w-5" />}
-                            name="Lebanese"
-                            region="Middle Eastern"
-                            learners="8K Learners"
+                            name={t('all_dialects.lebanese.title')}
+                            region={t('all_dialects.lebanese.region')}
+                            learners={"8K " + t('all_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Flame className="h-5 w-5" />}
-                            name="Tunisian"
-                            region="North African"
-                            learners="6K Learners"
+                            name={t('all_dialects.tunisian.title')}
+                            region={t('all_dialects.tunisian.region')}
+                            learners={"6K "+ t('all_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Flame className="h-5 w-5" />}
-                            name="Syrian"
-                            region="Middle Eastern"
-                            learners="7K Learners"
+                            name={t('all_dialects.syrian.title')}
+                            region={t('all_dialects.syrian.region')}
+                            learners={"7K "+ t('all_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Moon className="h-5 w-5" />}
-                            name="Lebanese"
-                            region="Middle Eastern"
-                            learners="8K Learners"
+                            name={t('all_dialects.morrocan.title')}
+                            region={t('all_dialects.morrocan.region')}
+                            learners={"8K "+ t('all_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Moon className="h-5 w-5" />}
-                            name="Lebanese"
-                            region="Middle Eastern"
-                            learners="8K Learners"
+                            name={t('all_dialects.algerian.title')}
+                            region={t('all_dialects.algerian.region')}
+                            learners={"8K "+ t('all_dialects.learners')}
                         />
                         <DialectCard
                             icon={<Moon className="h-5 w-5" />}
-                            name="Lebanese"
-                            region="Middle Eastern"
-                            learners="8K Learners"
+                            name={t('all_dialects.sicilian.title')}
+                            region={t('all_dialects.sicilian.region')}
+                            learners={"8K "+ t('all_dialects.learners')}
                         />
                     </div>
                 </section>
