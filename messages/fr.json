@@ -23,6 +23,79 @@
   "FooterPrivate": {
     "all_rights_reserved": "Tous droits réservés."
   },
+  "DictonnaryModal": {
+    "title": "Dictionnaire",
+    "modal_title": "Mon dictionnaire personnel",
+    "search_input": {
+      "placeholder": "Rechercher un mot..."
+    },
+    "dictionary_entries": {
+      "no_results_found": "Aucun résultat trouvé",
+      "translation" : "Traduction",
+      "notes" : "Notes :",
+      "added_at": "Ajouté le",
+      "buttons": {
+        "erase_search": "Effacer la recherche"
+      }
+    },
+    "filter": {
+      "title": "Filtre",
+      "alphabetical": "Alphabétique (A-Z)",
+      "recently_added": "Récemment ajouté",
+      "oldest_added": "Plus ancien ajouté"
+    },
+    "cancel": "Annuler",
+    "add":"Ajouter",
+    "add_or_modify_entry": {
+      "add_new_entry": "Ajouter une nouvelle entrée",
+      "modify_entry": "Modifier l'entrée",
+      "word_expression_sentence": {
+        "title": "Mot/Expression/Phrase",
+        "input" : {
+          "placeholder": "Ex: Bongiorno"
+        }
+      },
+      "translation": {
+        "title": "Traduction",
+        "input" : {
+          "placeholder": "Ex: Bonjour"
+        }
+      },
+      "notes": {
+        "title": "Notes (Contexte, prononciation)",
+        "input" : {
+          "placeholder": "Ajouter des notes ou un contexte..."
+        }
+      },
+      "types": {
+        "title": "Types",
+        "word": "Mot",
+        "expression": "Expression",
+        "sentence": "Phrase",
+        "add": "Ajouter",
+        "cancel": "Annuler",
+        "update": "Mettre à jour"
+      },
+      "empty": {
+        "title": "Votre dictionnaire est vide",
+        "description": "Ajoutez des mots, des expressions ou des phrases pour commencer à construire votre dictionnaire personnel.",
+        "buttons": {
+          "add_an_entry": "Ajouter une entrée"
+        }
+      }
+    },
+    "word_not_found": "Mot non trouvé",
+    "word_found": {
+      "title": "Mot trouvé",
+      "definition": "Définition",
+      "examples": "Exemples",
+      "synonyms": "Synonymes",
+      "antonyms": "Antonymes"
+    },
+    "close_button": {
+      "close": "Fermer"
+    }
+  },
   "LoginPage": {
     "welcome_back": {
       "title": "Content de vous revoir !",

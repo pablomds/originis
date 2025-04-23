@@ -28,6 +28,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
+import { useTranslations } from "next-intl"
 
 // Type for a dictionary entry
 interface DictionaryEntry {
@@ -36,10 +37,11 @@ interface DictionaryEntry {
   translation: string
   notes: string
   createdAt: number
-  type: "word" | "expression" | "phrase"
+  type: "word" | "expression" | "sentence"
 }
 
 export function DictionaryModal(): React.ReactElement {
+  const t = useTranslations("DictonnaryModal")
   // State for dictionary entries
   const [entries, setEntries] = useState<DictionaryEntry[]>([])
   const [filteredEntries, setFilteredEntries] = useState<DictionaryEntry[]>([])
@@ -48,7 +50,7 @@ export function DictionaryModal(): React.ReactElement {
   const [newWord, setNewWord] = useState<string>("")
   const [newTranslation, setNewTranslation] = useState<string>("")
   const [newNotes, setNewNotes] = useState<string>("")
-  const [newType, setNewType] = useState<"word" | "expression" | "phrase">("word")
+  const [newType, setNewType] = useState<"word" | "expression" | "sentence">("word")
   const [editingId, setEditingId] = useState<string | null>(null)
   const [showAddForm, setShowAddForm] = useState<boolean>(false)
 
@@ -97,9 +99,9 @@ export function DictionaryModal(): React.ReactElement {
           id: "3",
           word: "Iu sugnu di Catania",
           translation: "I am from Catania",
-          notes: "Useful phrase when introducing yourself",
+          notes: "Useful sentence when introducing yourself",
           createdAt: Date.now() - 2 * 24 * 60 * 60 * 1000, // 2 days ago
-          type: "phrase",
+          type: "sentence",
         },
       ]
       setEntries(exampleEntries)
@@ -240,7 +242,7 @@ export function DictionaryModal(): React.ReactElement {
         onClick={() => setOpen(true)}
       >
         <BookIcon style={{ height: '16px', width: '16px' }} />
-        Dictionary
+        {t("title")}
       </button>
 
       <Dialog
@@ -266,7 +268,7 @@ export function DictionaryModal(): React.ReactElement {
         }}>
           <DialogTitle sx={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px', padding: '0' }}>
             <BookIcon style={{ height: '20px', width: '20px' }} />
-            Mon Dictionnaire Personnel
+            {t("modal_title")}
           </DialogTitle>
         </Box>
 
@@ -274,7 +276,7 @@ export function DictionaryModal(): React.ReactElement {
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: '12px', mb: '16px', mt: '16px' }}>
             <Box sx={{ position: 'relative', flexGrow: 1 }}>
               <TextField
-                placeholder="Rechercher..."
+                placeholder={t("search_input.placeholder")}
                 fullWidth
                 variant="outlined"
                 size="small"
@@ -310,7 +312,7 @@ export function DictionaryModal(): React.ReactElement {
                   }
                 }}
               >
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Trier</Box>
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>{t("filter.title")}</Box>
               </Button>
               <Menu
                 anchorEl={anchorEl}
@@ -327,15 +329,15 @@ export function DictionaryModal(): React.ReactElement {
               >
                 <MenuItem onClick={() => handleSortSelect("alphabetical")} sx={{ gap: '8px', '&:focus': { backgroundColor: '#EEF2FF', color: '#4338CA' } }}>
                   <AlphabetLatin style={{ height: '16px', width: '16px' }} />
-                  Alphabétique (A-Z)
+                  {t("filter.alphabetical")}
                 </MenuItem>
                 <MenuItem onClick={() => handleSortSelect("recent")} sx={{ gap: '8px', '&:focus': { backgroundColor: '#EEF2FF', color: '#4338CA' } }}>
                   <Clock style={{ height: '16px', width: '16px' }} />
-                  Plus récent
+                  {t("filter.recently_added")}
                 </MenuItem>
                 <MenuItem onClick={() => handleSortSelect("oldest")} sx={{ gap: '8px', '&:focus': { backgroundColor: '#EEF2FF', color: '#4338CA' } }}>
                   <Clock style={{ height: '16px', width: '16px', transform: 'rotate(180deg)' }} />
-                  Plus ancien
+                  {t("filter.oldest_added")}
                 </MenuItem>
               </Menu>
 
@@ -354,7 +356,7 @@ export function DictionaryModal(): React.ReactElement {
                 }}
               >
                 <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-                  {showAddForm ? "Annuler" : "Ajouter"}
+                  {showAddForm ? t("cancel") : t("add")}
                 </Box>
               </Button>
             </Box>
@@ -374,17 +376,17 @@ export function DictionaryModal(): React.ReactElement {
               }}
             >
               <Typography variant="subtitle2" sx={{ mb: { xs: '8px', sm: '12px' }, color: '#4338CA', fontWeight: 500 }}>
-                {editingId ? "Modifier l'entrée" : "Ajouter une nouvelle entrée"}
+                {editingId ? t("add_or_modify_entry.modify_entry") : t("add_or_modify_entry.add_new_entry")}
               </Typography>
 
               <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: { xs: '8px', sm: '12px' }, mb: { xs: '8px', sm: '12px' } }}>
                 <Box>
                   <Typography component="label" variant="caption" sx={{ display: 'block', mb: '4px', color: '#4F46E5', fontWeight: 500 }}>
-                    Mot/Expression en dialecte
+                    {t("add_or_modify_entry.word_expression_sentence.title")}
                   </Typography>
                   <TextField
                     fullWidth
-                    placeholder="Ex: Bongiornu"
+                    placeholder={t("add_or_modify_entry.word_expression_sentence.input.placeholder")}
                     value={newWord}
                     onChange={(e) => setNewWord(e.target.value)}
                     size="small"
@@ -403,11 +405,11 @@ export function DictionaryModal(): React.ReactElement {
 
                 <Box>
                   <Typography component="label" variant="caption" sx={{ display: 'block', mb: '4px', color: '#4F46E5', fontWeight: 500 }}>
-                    Traduction
+                    {t("add_or_modify_entry.translation.title")}
                   </Typography>
                   <TextField
                     fullWidth
-                    placeholder="Ex: Bonjour"
+                    placeholder={t("add_or_modify_entry.translation.input.placeholder")}
                     value={newTranslation}
                     onChange={(e) => setNewTranslation(e.target.value)}
                     size="small"
@@ -427,12 +429,12 @@ export function DictionaryModal(): React.ReactElement {
 
               <Box sx={{ mb: { xs: '8px', sm: '12px' } }}>
                 <Typography component="label" variant="caption" sx={{ display: 'block', mb: '4px', color: '#4F46E5', fontWeight: 500 }}>
-                  Notes (contexte, prononciation, etc.)
+                  {t("add_or_modify_entry.notes.title")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
-                  placeholder="Ajoutez des notes ou du contexte..."
+                  placeholder={t("add_or_modify_entry.notes.input.placeholder")}
                   value={newNotes}
                   onChange={(e) => setNewNotes(e.target.value)}
                   rows={2}
@@ -451,12 +453,12 @@ export function DictionaryModal(): React.ReactElement {
 
               <Box sx={{ mb: '12px' }}>
                 <Typography component="label" variant="caption" sx={{ display: 'block', mb: '4px', color: '#4F46E5', fontWeight: 500 }}>
-                  Type
+                  {t("add_or_modify_entry.types.title")}
                 </Typography>
                 <TabContext value={newType}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList
-                      onChange={(e, newValue) => setNewType(newValue as "word" | "expression" | "phrase")}
+                      onChange={(e, newValue) => setNewType(newValue as "word" | "expression" | "sentence")}
                       sx={{
                         minHeight: { xs: '28px', sm: '32px' },
                         backgroundColor: '#E0E7FF',
@@ -464,7 +466,7 @@ export function DictionaryModal(): React.ReactElement {
                       }}
                     >
                       <Tab
-                        label="Mot"
+                        label={t("add_or_modify_entry.types.word")}
                         value="word"
                         sx={{
                           fontSize: '12px',
@@ -478,7 +480,7 @@ export function DictionaryModal(): React.ReactElement {
                         }}
                       />
                       <Tab
-                        label="Expression"
+                        label={t("add_or_modify_entry.types.expression")}
                         value="expression"
                         sx={{
                           fontSize: '12px',
@@ -492,14 +494,14 @@ export function DictionaryModal(): React.ReactElement {
                         }}
                       />
                       <Tab
-                        label="Phrase"
-                        value="phrase"
+                        label={t("add_or_modify_entry.types.sentence")}
+                        value="sentence"
                         sx={{
                           fontSize: '12px',
                           minHeight: { xs: '28px', sm: '32px' },
                           padding: { xs: '4px', sm: '8px' },
-                          backgroundColor: newType === 'phrase' ? '#F59E0B' : 'transparent',
-                          color: newType === 'phrase' ? 'white' : 'inherit',
+                          backgroundColor: newType === 'sentence' ? '#F59E0B' : 'transparent',
+                          color: newType === 'sentence' ? 'white' : 'inherit',
                           '&.Mui-selected': {
                             color: 'white'
                           }
@@ -528,7 +530,7 @@ export function DictionaryModal(): React.ReactElement {
                     }
                   }}
                 >
-                  Annuler
+                  {t("add_or_modify_entry.types.cancel")}
                 </Button>
                 <Button
                   variant="contained"
@@ -547,7 +549,7 @@ export function DictionaryModal(): React.ReactElement {
                     }
                   }}
                 >
-                  {editingId ? "Mettre à jour" : "Ajouter"}
+                  {editingId ? t("add_or_modify_entry.types.update") : t("add_or_modify_entry.types.add")}
                 </Button>
               </Box>
             </Paper>
@@ -569,7 +571,7 @@ export function DictionaryModal(): React.ReactElement {
                   {searchTerm ? (
                     <>
                       <Typography sx={{ color: '#4F46E5', mb: '8px' }}>
-                        <Box component="span" sx={{ display: 'block' }}>Aucun résultat trouvé pour</Box>
+                        <Box component="span" sx={{ display: 'block' }}>{t("dictionary_entries.no_results_found")}</Box>
                         <Box component="span" sx={{ fontWeight: 500 }}>"{searchTerm}"</Box>
                       </Typography>
                       <Button
@@ -584,16 +586,16 @@ export function DictionaryModal(): React.ReactElement {
                           }
                         }}
                       >
-                        Effacer la recherche
+                        {t("dictionary_entries.buttons.erase_search")}
                       </Button>
                     </>
                   ) : (
                     <>
                       <Typography sx={{ color: '#4F46E5', mb: '8px' }}>
-                        Votre dictionnaire est vide
+                        {t("add_or_modify_entry.empty.title")}
                       </Typography>
                       <Typography variant="caption" sx={{ color: '#818CF8', mb: '16px', maxWidth: '320px', mx: 'auto', display: 'block' }}>
-                        Ajoutez des mots, expressions ou phrases pour commencer à construire votre dictionnaire personnel
+                        {t("add_or_modify_entry.empty.description")}
                       </Typography>
                       <Button
                         variant="contained"
@@ -605,7 +607,7 @@ export function DictionaryModal(): React.ReactElement {
                           }
                         }}
                       >
-                        Ajouter une entrée
+                        {t("add_or_modify_entry.empty.buttons.add_an_entry")}
                       </Button>
                     </>
                   )}
@@ -684,9 +686,8 @@ export function DictionaryModal(): React.ReactElement {
                             }
                           }}
                           badgeContent={
-                            entry.type === "word" ? "Mot" :
-                              entry.type === "expression" ? "Expression" :
-                                "Phrase"
+                            entry.type === "word" ? t("add_or_modify_entry.types.word") :
+                              entry.type === "expression" ? t("add_or_modify_entry.types.expression") : t("add_or_modify_entry.types.sentence")
                           }
                         />
                       </Box>
@@ -732,7 +733,7 @@ export function DictionaryModal(): React.ReactElement {
                     <Box sx={{ p: { xs: '8px', sm: '12px' }, bgcolor: 'white' }}>
                       <Box sx={{ mb: '4px' }}>
                         <Typography variant="caption" sx={{ color: '#64748B' }}>
-                          Traduction:
+                          {t("dictionary_entries.translation")}
                         </Typography>
                         <Typography variant="body2">
                           {entry.translation}
@@ -742,7 +743,7 @@ export function DictionaryModal(): React.ReactElement {
                       {entry.notes && (
                         <Box sx={{ mb: '4px' }}>
                           <Typography variant="caption" sx={{ color: '#64748B' }}>
-                            Notes:
+                          {t("dictionary_entries.notes")}
                           </Typography>
                           <Typography variant="caption" sx={{ color: '#334155', display: 'block' }}>
                             {entry.notes}
@@ -753,7 +754,7 @@ export function DictionaryModal(): React.ReactElement {
                       <Box sx={{ mt: '8px', display: 'flex', alignItems: 'center', color: '#94A3B8', fontSize: '12px' }}>
                         <Clock style={{ height: '12px', width: '12px', marginRight: '4px' }} />
                         <Typography variant="caption" sx={{ color: '#94A3B8', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          Ajouté le {formatDate(entry.createdAt)}
+                          {t("dictionary_entries.added_at")} {formatDate(entry.createdAt)}
                         </Typography>
                       </Box>
                     </Box>

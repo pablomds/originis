@@ -23,6 +23,79 @@
   "FooterPrivate": {
     "all_rights_reserved": "All rights reserved."
   },
+  "DictonnaryModal": {
+    "title": "Dictonnary",
+    "modal_title": "My Personnal Dictonnary",
+    "search_input": {
+      "placeholder": "Search for a word..."
+    },
+    "dictionary_entries": {
+      "no_results_found": "No results found",
+      "translation" : "Translation",
+      "notes" : "Notes :",
+      "added_at": "Added at",
+      "buttons": {
+        "erase_search": "Erase search"
+      }
+    },
+    "filter": {
+      "title": "Filter",
+      "alphabetical": "Alphabetical (A-Z)",
+      "recently_added": "Recently Added",
+      "oldest_added": "Oldest Added"
+    },
+    "cancel": "Cancel",
+    "add":"Add",
+    "add_or_modify_entry": {
+      "add_new_entry": "Add new entry",
+      "modify_entry": "Modify entry",
+      "word_expression_sentence": {
+        "title": "Word/Expression/Sentence",
+        "input" : {
+          "placeholder": "Ex: Bongiorno"
+        }
+      },
+      "translation": {
+        "title": "Translation",
+        "input" : {
+          "placeholder": "Ex: Hello"
+        }
+      },
+      "notes": {
+        "title": "Notes (Context,pronunciation)",
+        "input" : {
+          "placeholder": "Add notes or context..."
+        }
+      },
+      "types": {
+        "title": "Types",
+        "word": "Word",
+        "expression": "Expression",
+        "sentence": "Sentence",
+        "add": "Add",
+        "cancel": "Cancel",
+        "update": "Update"
+      },
+      "empty": {
+        "title": "Your dictionnary is empty",
+        "description": "Add words, expressions or sentences to start building your personal dictionnary",
+        "buttons": {
+          "add_an_entry": "Add An Entry"
+        }
+      }
+    },
+    "word_not_found": "Word not found",
+    "word_found": {
+      "title": "Word found",
+      "definition": "Definition",
+      "examples": "Examples",
+      "synonyms": "Synonyms",
+      "antonyms": "Antonyms"
+    },
+    "close_button": {
+      "close": "Close"
+    }
+  },
   "LoginPage": {
     "welcome_back": {
       "title": "Welcome Back!",
