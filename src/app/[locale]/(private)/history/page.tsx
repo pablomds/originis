@@ -3,6 +3,7 @@ import { ArrowLeft, Clock} from "lucide-react"
 import { JSX } from "react";
 import { useRouter } from "next/navigation";
 import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
+import { useTranslations } from "use-intl";
 
 interface HistoricalPeriodProps {
     year: string
@@ -18,6 +19,9 @@ interface LiteraryPeriodProps {
 }
 
 export default function SicilianHistoryPage() {
+
+    const t = useTranslations("HistoryPage")
+    
     const router = useRouter();
     // Fonction pour gérer le changement d'onglet
     const handleTabChange = (tab: string): void => {
@@ -70,7 +74,7 @@ export default function SicilianHistoryPage() {
                 {/* Main Content */}
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
                     <div className="mb-6">
-                        <h2 className="text-xl font-bold mb-2">Historical Background</h2>
+                        <h2 className="text-xl font-bold mb-2">{t("historical_background.title")}</h2>
                         <p className="text-slate-600">
                             Sicily's strategic position in the Mediterranean has made it a crossroads of civilizations for millennia,
                             each leaving their mark on the island's language and culture. This historical complexity is reflected in
@@ -83,7 +87,7 @@ export default function SicilianHistoryPage() {
                         <div className="bg-amber-50 rounded-lg p-4">
                             <h3 className="font-medium mb-2 flex items-center">
                                 <Clock className="h-5 w-5 mr-2 text-amber-600" />
-                                Key Historical Periods
+                                {t("historical_background.key_historical_periods.title")}
                             </h3>
                             <ul className="space-y-2 text-sm">
                                 <li className="flex items-start">
@@ -127,7 +131,7 @@ export default function SicilianHistoryPage() {
 
                         <div className="md:col-span-2">
                             <div className="bg-slate-50 rounded-lg p-4 h-full">
-                                <h3 className="font-medium mb-3">Historical Impact on Language</h3>
+                                <h3 className="font-medium mb-3">{t("historical_background.historial_impact_on_language.title")}</h3>
                                 <p className="text-sm text-slate-600 mb-4">
                                     Each period of Sicily's history has contributed unique linguistic elements to the Sicilian dialect,
                                     creating a rich tapestry of vocabulary, grammar, and pronunciation:
@@ -161,8 +165,7 @@ export default function SicilianHistoryPage() {
                     </div>
 
                     <div className="relative pl-6 ml-3 space-y-8 mb-8">
-                        <h3 className="text-lg font-semibold -ml-9 mb-6">Historical Timeline</h3>
-
+                        <h3 className="text-lg font-semibold -ml-9 mb-6">{t("historical_timeline.title")}</h3>
                     </div>
 
                     <div className="relative border-l-2 border-amber-200 pl-6 ml-3 space-y-8 mb-8">
@@ -204,7 +207,7 @@ export default function SicilianHistoryPage() {
                     </div>
 
                     <div className="mb-8">
-                        <h3 className="text-lg font-semibold mb-4">Literary Heritage</h3>
+                        <h3 className="text-lg font-semibold mb-4">{t("literary_heritage.title")}</h3>
                         <p className="text-slate-600 mb-6">
                             Throughout its history, Sicily has produced a rich literary tradition in the Sicilian language, reflecting
                             the island's complex cultural identity and historical experiences.
@@ -232,7 +235,7 @@ export default function SicilianHistoryPage() {
                     </div>
 
                     <div className="bg-amber-50 rounded-lg p-5 mb-6">
-                        <h3 className="font-medium mb-3">Historical Artifacts</h3>
+                        <h3 className="font-medium mb-3">{t("historical_artifacts.title")}</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <img

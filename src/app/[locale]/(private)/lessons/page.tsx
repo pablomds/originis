@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/utils/utils";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 // Define lesson type
 type Lesson = {
@@ -58,6 +59,7 @@ type Chapter = {
 }
 
 export default function LessonsPage() {
+  const t = useTranslations("LessonsPage");
   // Sample chapters data
   const [chapters, setChapters] = useState<Chapter[]>([
     // Chapter 1: Conversations
@@ -614,14 +616,14 @@ export default function LessonsPage() {
               className="flex items-center text-indigo-700 hover:text-indigo-900 transition-colors"
             >
               <ArrowLeft className="h-5 w-5 mr-1" />
-              <span className="text-sm font-medium">Back</span>
+              <span className="text-sm font-medium">{t("back")}</span>
             </Link>
 
-            <h1 className="text-2xl font-bold text-center">My Lessons</h1>
+            <h1 className="text-2xl font-bold text-center">{t("title")}</h1>
 
             <div className="flex flex-col items-end">
               <span className="text-sm font-medium mb-1">
-                {completedLessons}/{totalLessons} completed
+                {completedLessons}/{totalLessons} {t("progress_bar.completed")}
               </span>
               <div className="w-32">
                 <Progress value={progressPercentage} className="h-2" />
