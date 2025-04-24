@@ -318,5 +318,188 @@
         "region": "Méditerranée"
       }
     }
+  },
+  "LessonsPage": {
+    "title": "Mes Leçons",
+    "description": "Learn the basics of the dialect",
+    "back": "Retour",
+    "progress_bar": {
+      "title": "Progress",
+      "completed": "Terminé",
+      "total": "Total",
+      "percentage": "Percentage"
+    },
+    "lessons": {
+      "lesson_1": {
+        "title": "Lesson 1",
+        "description": "Introduction to the dialect"
+      },
+      "lesson_2": {
+        "title": "Lesson 2",
+        "description": "Basic vocabulary and phrases"
+      },
+      "lesson_3": {
+        "title": "Lesson 3",
+        "description": "Grammar and sentence structure"
+      }
+    },
+    "start_learning": {
+      "start_now": "Commencer maintenant",
+      "continue_learning": "Continuer l'apprentissage"
+    }
+  },
+  "CulturePage": {
+    "title": "Culture",
+    "progress_bar": {
+      "culture_progress": "Progrès culturel:",
+      "title": "Progrès",
+      "completed": "Terminé",
+      "total": "Total",
+      "percentage": "Pourcentage"
+    },
+    "sicilian_culture": {
+      "title": "Culture sicilienne",
+      "description": "Découvrez le riche patrimoine, l'histoire fascinante et les aspects culturels uniques de la Sicile et de son dialecte particulier.",
+      "the_sicilian_dialect": {
+        "title": "Le dialecte sicilien",
+        "description": "Le sicilien (sicilianu) est une langue romane parlée par environ 5 millions de personnes en Sicile et dans le sud de la Calabre. Bien qu'il soit souvent considéré comme un dialecte de l'italien, il est considéré comme une langue distincte avec sa propre tradition littéraire. \nLa langue reflète l'histoire riche et complexe de la Sicile, avec des influences grecques, arabes, françaises normandes, occitanes, catalanes et espagnoles, ce qui en fait une tapisserie linguistique fascinante.",
+        "buttons":{
+          "start_learning": "Commencer à apprendre",
+          "listen_to_examples": "Écouter des exemples"
+        }
+      },
+      "quick_facts": {
+        "title": "Faits marquants",
+        "list": [
+          "Parlé par environ 5 millions de personnes",
+          "L'UNESCO reconnaît le sicilien comme langue minoritaire",
+          "Une riche tradition littéraire remontant au 13e siècle",
+          "Influences grecques, arabes, françaises normandes et espagnoles."
+        ]
+      },
+      "did_you_know": {
+        "title": "Le saviez-vous ?",
+        "description": "Le plus ancien texte littéraire en sicilien remonte à 1230 et précède les œuvres de Dante en italien. L'école poétique sicilienne sous Frédéric II a influencé le développement de la littérature italienne."
+      }
+    },
+    "continue_your_cultural_journey": {
+      "title": "Continuez votre voyage culturel",
+      "historical_timeline": {
+        "title": "Chronologie historique",
+        "description": "Explore key events in "
+      },
+      "regional_variations": {
+        "title": "Variations régionales",
+        "description": "Discover dialect differences across "
+      },
+      "traditional_music": {
+        "title": "Musique traditionnelle",
+        "description": "Experience the sounds of Sicilian folk music and its influence on contemporary genres."
+      },
+      "culinary_traditions": {
+        "title": "Traditions culinaires",
+        "description": "Sicilian cuisine is a blend of Mediterranean flavors, with influences from Arab, Greek, and Spanish cooking."
+      }
+    },
+    "continue_learning": {
+      "title": "Continuer l'apprentissage",
+      "basic_sentence": {
+        "title": "Phrase de base",
+        "continue": "Continuer"
+      },
+      "community_forum": {
+        "title": "Forum communautaire",
+        "description": "Participer à des discussions avec d'autres apprenants",
+        "buttons": {
+          "join_conversation": "Participer à la conversation"
+        }
+      },
+      "folk_songs": {
+        "title": "Chansons folkloriques",
+        "buttons": {
+          "explore_songs": "Explorer les chansons"
+        }
+      }
+    }
+  },
+  "CultureMenu": {
+    "tabs" : {
+      "overview": "Aperçu général",
+      "history": "Histoire",
+      "language": "Langue",
+      "phonetics": "Phonétique"
+    }
+  },
+  "HistoryPage": {
+    "title": "Histoire",
+    "historical_background": {
+      "title": "Contexte historique",
+      "key_historical_periods": {
+        "title": "Périodes historiques clés"
+      },
+      "historial_impact_on_language": {
+        "title": "Impact historique sur la langue"
+      }
+    },
+    "historical_timeline": {
+      "title": "Chronologie historique"
+    },
+    "literary_heritage": {
+      "title": "Patrimoine littéraire"
+    },
+    "historical_artifacts": {
+      "title": "Artéfacts historiques"
+    }
+   },
+   "LanguagePage": {
+    "title": "Langue",
+    "language_overview": {
+      "title": "Aperçu de la langue",
+      "key_language_features": {
+        "title": "Caractéristiques linguistiques clés"
+      }
+    },
+    "linguistic_classification": {
+      "title": "Classification linguistique",
+      "phonological_differences": {
+        "title": "Différences phonologiques"
+      },
+      "grammatical_structure": {
+        "title": "Structure grammaticale"
+      },
+      "lexical_richness": {
+        "title": "Richesse lexicale"
+      },
+      "literary_tradition": {
+        "title": "Tradition littéraire"
+      }
+    },
+    "phonetics_and_pronunciation": {
+      "title": "Phonétique et prononciation"
+    },
+    "consonant_features": {
+      "title": "Caractéristiques des consonnes",
+      "retroflex_consonants": {
+        "title": "Consonnes rétroflexes"
+      },
+      "preserved_latin_clusters" : {
+        "title": "Clusters latins préservés"
+      }
+    },
+    "vowel_system": {
+      "title": "Système de voyelles"
+    },
+    "pronunciation_comparison": {
+      "title": "Comparaison de la prononciation"
+    },
+    "grammar_and_structure": {
+      "title": "Grammaire et structure"
+    },
+    "vocabulary_and_expressions": {
+      "title": "Vocabulaire et expressions"
+    }
+  },
+  "PhoneticsPage": {
+    "title": "Phonetics"
   }
 }

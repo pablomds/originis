@@ -318,5 +318,188 @@
         "region": "Mediterranean"
       }
     }
+  },
+  "LessonsPage": {
+    "title": "My Lessons",
+    "description": "Learn the basics of the dialect",
+    "back": "Back",
+    "progress_bar": {
+      "title": "Progress",
+      "completed": "Completed",
+      "total": "Total",
+      "percentage": "Percentage"
+    },
+    "lessons": {
+      "lesson_1": {
+        "title": "Lesson 1",
+        "description": "Introduction to the dialect"
+      },
+      "lesson_2": {
+        "title": "Lesson 2",
+        "description": "Basic vocabulary and phrases"
+      },
+      "lesson_3": {
+        "title": "Lesson 3",
+        "description": "Grammar and sentence structure"
+      }
+    },
+    "start_learning": {
+      "start_now": "Start Now",
+      "continue_learning": "Continue Learning"
+    }
+  },
+  "CulturePage": {
+    "title": "Culture",
+    "progress_bar": {
+      "culture_progress": "Culture Progress:",
+      "title": "Progress",
+      "completed": "Completed",
+      "total": "Total",
+      "percentage": "Percentage"
+    },
+    "sicilian_culture": {
+      "title": "Sicilian Culture",
+      "description": "Discover the rich heritage, fascinating history, and unique cultural aspects of Sicily and its distinctive dialect.",
+      "the_sicilian_dialect": {
+        "title": "The Sicilian Dialect",
+        "description": "Sicilian (sicilianu) is a Romance language spoken by about 5 million people in Sicily and southern Calabria. Despite often being referred to as a dialect of Italian, linguistically it's considered a distinct language with its own literary tradition. \nThe language reflects Sicily's rich and complex history, with influences from Greek, Arabic, Norman French, Occitan, Catalan, and Spanish, making it a fascinating linguistic tapestry.",
+        "buttons":{
+          "start_learning": "Start Learning",
+          "listen_to_examples": "Listen to Examples"
+        }
+      },
+      "quick_facts": {
+        "title": "Quick Facts",
+        "list": [
+          "Spoken by approximately 5 million people",
+          "UNESCO recognizes Sicilian as a minority language",
+          "Has a rich literary tradition dating back to the 13th century",
+          "Features influences from Greek, Arabic, Norman French, and Spanish"
+        ]
+      },
+      "did_you_know": {
+        "title": "Did You Know?",
+        "description": "The oldest literary text in Sicilian dates back to 1230, predating Dante's works in Italian. The Sicilian School of poetry under Frederick II influenced the development of Italian literature."
+      }
+    },
+    "continue_your_cultural_journey": {
+      "title": "Continue Your Cultural Journey",
+      "historical_timeline": {
+        "title": "Historical Timeline",
+        "description": "Explore key events in "
+      },
+      "regional_variations": {
+        "title": "Regional Variations",
+        "description": "Discover dialect differences across "
+      },
+      "traditional_music": {
+        "title": "Traditional Music",
+        "description": "Experience the sounds of Sicilian folk music and its influence on contemporary genres."
+      },
+      "culinary_traditions": {
+        "title": "Culinary Traditions",
+        "description": "Sicilian cuisine is a blend of Mediterranean flavors, with influences from Arab, Greek, and Spanish cooking."
+      }
+    },
+    "continue_learning": {
+      "title": "Continue Learning",
+      "basic_sentence": {
+        "title": "Basic Sentence",
+        "continue": "Continue"
+      },
+      "community_forum": {
+        "title": "Community Forum",
+        "description": "Join discussions with other learners",
+        "buttons": {
+          "join_conversation": "Join Conversation"
+        }
+      },
+      "folk_songs": {
+        "title": "Folk Songs",
+        "buttons": {
+          "explore_songs": "Explore songs"
+        }
+      }
+    }
+  },
+  "CultureMenu": {
+    "tabs" : {
+      "overview": "Overview",
+      "history": "History",
+      "language": "Language",
+      "phonetics": "Phonetics"
+    }
+  },
+  "HistoryPage": {
+    "title": "History",
+    "historical_background": {
+      "title": "Historical Background",
+      "key_historical_periods": {
+        "title": "Key Historical Periods"
+      },
+      "historial_impact_on_language": {
+        "title": "Historical Impact on Language"
+      }
+    },
+    "historical_timeline": {
+      "title": "Historical Timeline"
+    },
+    "literary_heritage": {
+      "title": "Literary Heritage"
+    },
+    "historical_artifacts": {
+      "title": "Historical Artifacts"
+    }
+  },
+  "LanguagePage": {
+    "title": "Language",
+    "language_overview": {
+      "title": "Language Overview",
+      "key_language_features": {
+        "title": "Key Language Features"
+      }
+    },
+    "linguistic_classification": {
+      "title": "Linguistic Classification",
+      "phonological_differences": {
+        "title": "Phonological Differences"
+      },
+      "grammatical_structure": {
+        "title": "Grammatical Structure"
+      },
+      "lexical_richness": {
+        "title": "Lexical Richness"
+      },
+      "literary_tradition": {
+        "title": "Literary Tradition"
+      }
+    },
+    "phonetics_and_pronunciation": {
+      "title": "Phonetics and Pronunciation"
+    },
+    "consonant_features": {
+      "title": "Consonant Features",
+      "retroflex_consonants": {
+        "title": "Retroflex Consonants"
+      },
+      "preserved_latin_clusters" : {
+        "title": "Preserved Latin Clusters"
+      }
+    },
+    "vowel_system": {
+      "title": "Vowel System"
+    },
+    "pronunciation_comparison": {
+      "title": "Pronunciation Comparison"
+    },
+    "grammar_and_structure": {
+      "title": "Grammar and Structure"
+    },
+    "vocabulary_and_expressions": {
+      "title": "Vocabulary and Expressions"
+    }
+  },
+  "PhoneticsPage": {
+    "title": "Phonetics"
   }
 }
