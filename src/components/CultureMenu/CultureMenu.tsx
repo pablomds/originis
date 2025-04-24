@@ -2,11 +2,21 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export function CultureMenu() {
+  const t = useTranslations("CultureMenu");
+
   const [activeTab, setActiveTab] = useState("");
   const router = useRouter();
   const pathname = usePathname();
+
+  const tabs = [
+    { name: "culture", label: t("tabs.overview"), color: "indigo" },
+    { name: "history", label: t("tabs.history"), color: "amber" },
+    { name: "language", label: t("tabs.language"), color: "pink" },
+    { name: "phonetics", label: t("tabs.phonetics"), color: "violet" },
+  ];
 
   useEffect(() => {
     const current = pathname.split("/").pop();
@@ -17,13 +27,6 @@ export function CultureMenu() {
     setActiveTab(tab);
     router.push(tab);
   };
-
-  const tabs = [
-    { name: "culture", label: "Overview", color: "indigo" },
-    { name: "history", label: "History", color: "amber" },
-    { name: "language", label: "Language", color: "pink" },
-    { name: "phonetics", label: "Phonetics", color: "violet" },
-  ];
 
   const tabStyles: Record<string, any> = {
     indigo: {

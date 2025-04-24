@@ -3,7 +3,8 @@ import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 // import { useRouter } from 'next/navigation'; // ✅ Correct pour /app
-import { CultureMenu } from "@/components/CultureMenu/CultureMenu"
+import { CultureMenu } from "@/components/CultureMenu/CultureMenu";
+import { useTranslations } from "next-intl";
 // Define necessary types
 type LanguageFeature = {
     text: string;
@@ -44,6 +45,8 @@ type SicilianExpression = {
 }
 
 export default function SicilianLanguagePage() {
+
+    const t = useTranslations('LanguagePage')
   
     const languageFeatures: LanguageFeature[] = [
         { text: "Distinct phonological system with unique consonant sounds" },
@@ -142,7 +145,7 @@ export default function SicilianLanguagePage() {
                 <div className="bg-white rounded-xl p-6 sm:p-8 shadow-sm border border-gray-200">
                     {/* Language Overview */}
                     <section className="mb-10">
-                        <h2 className="text-2xl font-bold mb-4">Language Overview</h2>
+                        <h2 className="text-2xl font-bold mb-4">{t("language_overview.title")}</h2>
                         <p className="text-slate-700 text-lg leading-relaxed mb-8">
                             Sicilian (Sicilianu) is a Romance language spoken by approximately 5 million people, primarily in Sicily
                             and southern Italy. Despite often being classified as an Italian dialect, linguists recognize Sicilian as
@@ -155,7 +158,7 @@ export default function SicilianLanguagePage() {
                             <div className="bg-indigo-50 rounded-xl p-6">
                                 <div className="flex items-center gap-2 mb-4">
                                     <MessageSquare className="h-5 w-5 text-indigo-500" />
-                                    <h3 className="text-xl font-bold">Key Language Features</h3>
+                                    <h3 className="text-xl font-bold">{t("language_overview.key_language_features.title")}</h3>
                                 </div>
 
                                 <ul className="space-y-4">
@@ -170,7 +173,7 @@ export default function SicilianLanguagePage() {
 
                             {/* Linguistic Classification */}
                             <div>
-                                <h3 className="text-xl font-bold mb-4">Linguistic Classification</h3>
+                                <h3 className="text-xl font-bold mb-4">{t("linguistic_classification.title")}</h3>
                                 <p className="text-slate-700 mb-6">
                                     Sicilian belongs to the Italo-Romance branch of Romance languages, with several distinctive features
                                     that set it apart from other Italian dialects:
@@ -192,11 +195,11 @@ export default function SicilianLanguagePage() {
 
                     {/* Phonetics and Pronunciation */}
                     <section className="mb-10">
-                        <h2 className="text-2xl font-bold mb-6">Phonetics and Pronunciation</h2>
+                        <h2 className="text-2xl font-bold mb-6">{t("phonetics_and_pronunciation.title")}</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-sm">
-                                <h3 className="text-xl font-bold text-blue-800 mb-4">Consonant Features</h3>
+                                <h3 className="text-xl font-bold text-blue-800 mb-4">{t("consonant_features.title")}</h3>
 
                                 <div className="space-y-4">
                                     <div className="bg-white rounded-lg p-4 shadow-sm">
@@ -204,7 +207,7 @@ export default function SicilianLanguagePage() {
                                             <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold mr-2">
                                                 DD
                                             </span>
-                                            <h4 className="font-semibold">Retroflex Consonants</h4>
+                                            <h4 className="font-semibold">{t("consonant_features.retroflex_consonants.title")}</h4>
                                         </div>
                                         <p className="text-slate-700 text-sm">
                                             Sicilian features the distinctive retroflex "dd" sound (similar to an English "d" but with the
@@ -220,7 +223,7 @@ export default function SicilianLanguagePage() {
                                             <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold mr-2">
                                                 CL
                                             </span>
-                                            <h4 className="font-semibold">Preserved Latin Clusters</h4>
+                                            <h4 className="font-semibold">{t("consonant_features.preserved_latin_clusters.title")}</h4>
                                         </div>
                                         <p className="text-slate-700 text-sm">
                                             Sicilian preserves many Latin consonant clusters that were simplified in Italian.
@@ -233,7 +236,7 @@ export default function SicilianLanguagePage() {
                             </div>
 
                             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 shadow-sm">
-                                <h3 className="text-xl font-bold text-purple-800 mb-4">Vowel System</h3>
+                                <h3 className="text-xl font-bold text-purple-800 mb-4">{t("vowel_system.title")}</h3>
 
                                 <div className="space-y-4">
                                     <div className="bg-white rounded-lg p-4 shadow-sm">
@@ -286,7 +289,7 @@ export default function SicilianLanguagePage() {
                         </div>
 
                         <div className="mt-6 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 shadow-sm">
-                            <h3 className="text-xl font-bold text-amber-800 mb-4">Pronunciation Comparison</h3>
+                            <h3 className="text-xl font-bold text-amber-800 mb-4">{t("pronunciation_comparison.title")}</h3>
 
                             <div className="overflow-x-auto">
                                 <Table>
@@ -315,7 +318,7 @@ export default function SicilianLanguagePage() {
 
                     {/* Grammar and Structure */}
                     <section className="mb-10">
-                        <h2 className="text-2xl font-bold mb-6">Grammar and Structure</h2>
+                        <h2 className="text-2xl font-bold mb-6">{t("grammar_and_structure.title")}</h2>
 
                         <div className="bg-gradient-to-r from-teal-50 to-green-50 rounded-xl p-6 shadow-sm">
                             <h3 className="text-xl font-bold text-teal-800 text-center mb-6">Sicilian Grammar Highlights</h3>
@@ -403,7 +406,7 @@ export default function SicilianLanguagePage() {
 
                     {/* Vocabulary and Expressions */}
                     <section>
-                        <h2 className="text-2xl font-bold mb-6">Vocabulary and Expressions</h2>
+                        <h2 className="text-2xl font-bold mb-6">{t("vocabulary_and_expressions.title")}</h2>
 
                         <div className="mb-8">
                             <h3 className="text-xl font-bold mb-6 flex justify-center">Multicultural Vocabulary Origins</h3>
