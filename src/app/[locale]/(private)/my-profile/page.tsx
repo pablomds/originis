@@ -91,15 +91,15 @@ const TabComponent: React.FC<TabProps> = ({
   }
 
   return (
-    <div className={`lg:flex lg:flex-col w-full ${className} lg:justify-between lg:h-full lg:gap-y-[27px]`}>
+    <div className={`lg:flex lg:flex-col w-full ${className} h-full lg:gap-y-[18px]`}>
       {/* Tab Navigation */}
-      <div className="flex flex-nowrap lg:flex-wrap w-full bg-gray-200 border-b border-gray-200 py-[5px] px-[7px] rounded-[8px] mb-[18px] lg:mb-0">
+      <div className="flex flex-nowrap lg:flex-wrap lg:h-[40px] w-full bg-gray-200 border-b border-gray-200 py-[4px] px-[5px] rounded-[8px] mb-[18px] lg:mb-0">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`
-              px-4 py-2 text-sm font-medium
+              px-4 py-1 text-sm font-medium
               transition-colors duration-200 ease-in-out
               focus:outline-none cursor-pointer
               ${activeTab === tab.id
@@ -118,11 +118,11 @@ const TabComponent: React.FC<TabProps> = ({
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white border-1 border-gray-200 rounded-[8px] lg:pt-[38px] lg:h-full">
+      <div className="flex-grow w-full">
         {tabs.map((tab) => (
           <div
             key={tab.id}
-            className={`${activeTab === tab.id ? 'block' : 'hidden'}`}
+            className={`${activeTab === tab.id ? 'block' : 'hidden'} w-full h-full`}
             role="tabpanel"
             aria-labelledby={`tab-${tab.id}`}
             id={`tabpanel-${tab.id}`}
@@ -150,66 +150,119 @@ function page() {
       id: "personal",
       label: "Personal Info",
       content: (
-        <div className="p-4 relative">
-          <div className="flex flex-row justify-start">
-            <User size={24} className="text-indigo-700 mr-[8px]" />
-            <h2 className="text-lg font-semibold mb-4">
-              {" "}
-              Personal Information
-            </h2>
-          </div>
-          <div className="absolute top-0 right-2 flex items-center p-2 ">
-            <button className="border border-indigo-200 flex flex-row items-center px-[14px] py-[11px] rounded-[6px] gap-x-[2px]">
-              <Pencil size={16} className="text-blue-700" />
-              <span className="text-[15px] font-medium text-indigo-700">
-                Edit
-              </span>
-            </button>
-          </div>
-          <div className="flex flex-col gap-y-[29px]">
-            <div className="grid grid-cols-2">
-              <div>
-                <p className="font-medium text-[15px] text-gray-700">
-                  Full Name
-                </p>
-                <p className="font-medium text-[15px] text-gray-700">
-                  Maria Rossi
-                </p>
+        <div className="flex flex-col gap-y-[28px]">
+          <div className="p-4 lg:h-[337px] relative bg-white border border-gray-200 rounded-[8px] lg:pt-[38px]">
+            <div className="flex flex-row justify-start">
+              <User size={24} className="text-indigo-700 mr-[8px]" />
+              <h2 className="text-lg font-semibold mb-4">
+                {" "}
+                Personal Information
+              </h2>
+            </div>
+            <div className="absolute top-0 right-2 flex items-center p-2">
+              <button className="border border-indigo-200 flex flex-row items-center px-[14px] py-[11px] rounded-[6px] gap-x-[2px]">
+                <Pencil size={16} className="text-blue-700" />
+                <span className="text-[15px] font-medium text-indigo-700">
+                  Edit
+                </span>
+              </button>
+            </div>
+            <div className="flex flex-col gap-y-[29px]">
+              <div className="grid grid-cols-2">
+                <div>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Full Name
+                  </p>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Maria Rossi
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Email Address
+                  </p>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    maria.rossi@gmail.com
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-[15px] text-gray-700">
-                  Email Address
-                </p>
-                <p className="font-medium text-[15px] text-gray-700">
-                  maria.rossi@gmail.com
-                </p>
+              <div className="grid grid-cols-2">
+                <div className="w-full">
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Native Language
+                  </p>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Italian
+                  </p>
+                </div>
+                <div className="w-full">
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Location
+                  </p>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Rome, Italy
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap">
+                <div>
+                  <p className="font-medium text-[15px] text-gray-700">Bio</p>
+                  <p className="font-medium text-[15px] text-gray-700">
+                    Language enthusiast passionate about Sicilian dialect and
+                    culture. I love learning through traditional songs and
+                    connecting with native speakers.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="w-full">
-                <p className="font-medium text-[15px] text-gray-700">
-                  Native Language
-                </p>
-                <p className="font-medium text-[15px] text-gray-700">Italian</p>
-              </div>
-              <div className="w-full">
-                <p className="font-medium text-[15px] text-gray-700">
-                  Location
-                </p>
-                <p className="font-medium text-[15px] text-gray-700">
-                  Rome, Italy
-                </p>
+          </div>
+          <div className="lg:w-full border border-gray-200 bg-white rounded-[8px] px-[24px] py-[20px] flex flex-col gap-y-[29px] max-h-fit">
+            <div className="flex items-center">
+              <Lock className="text-indigo-700 mr-[8px] h-7 w-7" />
+              <h2 className="text-[20px] font-semibold">Change Password</h2>
+            </div>
+            <div>
+              <label
+                htmlFor="currentPassword"
+                className="font-medium text-[14px] text-gray-700 mb-[6px]"
+              >
+                Current Password
+              </label>
+              <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+                <input type="text" className="w-full outline-none" />
+                <Eye className="text-gray-500" />
               </div>
             </div>
-            <div className="flex flex-wrap">
-              <div>
-                <p className="font-medium text-[15px] text-gray-700">Bio</p>
-                <p className="font-medium text-[15px] text-gray-700">
-                  Language enthusiast passionate about Sicilian dialect and
-                  culture. I love learning through traditional songs and
-                  connecting with native speakers.
-                </p>
+            <div className="lg:flex lg:justify-between lg:gap-x-[34px]">
+              <div className="lg:w-1/2">
+                <label
+                  htmlFor="newPassword"
+                  className="font-medium text-[14px] text-gray-700 mb-[6px]"
+                >
+                  New Password
+                </label>
+                <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+                  <input type="text" className="w-full outline-none" />
+                  <Eye className="text-gray-500" />
+                </div>
               </div>
+              <div className="lg:w-1/2">
+                <label
+                  htmlFor="newPassword"
+                  className="font-medium text-[14px] text-gray-700 mb-[6px]"
+                >
+                  Confirm Password
+                </label>
+                <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+                  <input type="text" className="w-full outline-none" />
+                  <Eye className="text-gray-500" />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <button className="bg-indigo-700 text-white px-[14px] py-[11px] rounded-[6px] flex items-center gap-x-[2px]">
+                <span className="text-[15px] font-medium">Change Password</span>
+              </button>
             </div>
           </div>
         </div>
@@ -219,101 +272,124 @@ function page() {
       id: "learning",
       label: "Learning Dialects",
       content: (
-        <div className="p-4 relative h-full flex flex-col gap-y-[19px]">
-          <div className="flex flex-row justify-start">
-            <BookOpen size={24} className="text-indigo-700 mr-[8px]" />
-            <h2 className="text-lg font-semibold mb-4"> Learning Dialects</h2>
-          </div>
-          <div className="flex flex-col gap-y-[19px]"></div>
-          <div className="bg-slate-50 border border-gray-200 rounded-[8px] px-[25px] pt-[14px] pb-[24px]">
-            <div className="flex flex-row justify-between mb-[11px]">
-              <div className="flex items-center gap-x-[12px]">
-                <span className="text-[16px] font-semibold">Sicilian</span>
-                <div className="bg-green-100 rounded-[20px] py-[3px] px-[6px] flex items-center">
-                  <span className="text-[12px] text-green-700 font-semibold">
-                    Advanced
-                  </span>
+        <div className="flex flex-col gap-y-[27px] lg:w-full">
+          <div className="p-4 bg-white border border-gray-200 rounded-[8px] relative h-full w-full flex flex-col gap-y-[19px]">
+            <div className="flex flex-row justify-start">
+              <BookOpen size={24} className="text-indigo-700 mr-[8px]" />
+              <h2 className="text-lg font-semibold mb-4"> Learning Dialects</h2>
+            </div>
+            <div className="flex flex-col gap-y-[19px]">
+              <div className="bg-slate-50 border border-gray-200 rounded-[8px] px-[25px] pt-[14px] pb-[24px]">
+                <div className="flex flex-row justify-between mb-[11px]">
+                  <div className="flex items-center gap-x-[12px]">
+                    <span className="text-[16px] font-semibold">Sicilian</span>
+                    <div className="bg-green-100 rounded-[20px] py-[3px] px-[6px] flex items-center">
+                      <span className="text-[12px] text-green-700 font-semibold">
+                        Advanced
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-x-[13px]">
+                    <DropdownButton options={options} />
+                    <Trash size={24} className="text-red-500" />
+                  </div>
+                </div>
+                <div className="flex flex-nowrap justify-between items-center mb-[20px]">
+                  <div>
+                    <span>Progress :</span>
+                  </div>
+                  <div className="w-4/6 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#22C55E] rounded-full"
+                      style={{ width: "85%" }}
+                    ></div>
+                  </div>
+                  <span>85%</span>
+                </div>
+                <div className="grid grid-cols-4 gap-x-[9px]">
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Vocabulary
+                    </span>
+                    <span className="text-[12px] font-semibold">212 words</span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">Lessons</span>
+                    <span className="text-[12px] font-semibold">
+                      2 completed
+                    </span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Practice Time
+                    </span>
+                    <span className="text-[12px] font-semibold">8 minutes</span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Last Activity
+                    </span>
+                    <span className="text-[12px] font-semibold">
+                      2 days ago
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-x-[13px]">
-                <DropdownButton options={options} />
-                <Trash size={24} className="text-red-500" />
-              </div>
-            </div>
-            <div className="flex flex-nowrap justify-between items-center mb-[20px]">
-              <div>
-                <span>Progress :</span>
-              </div>
-              <div className="w-4/6 h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#22C55E] rounded-full"
-                  style={{ width: "85%" }}
-                ></div>
-              </div>
-              <span>85%</span>
-            </div>
-            <div className="grid grid-cols-4 gap-x-[9px]">
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Vocabulary</span>
-                <span className="text-[12px] font-semibold">212 words</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Lessons</span>
-                <span className="text-[12px] font-semibold">2 completed</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Practice Time</span>
-                <span className="text-[12px] font-semibold">8 minutes</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Last Activity</span>
-                <span className="text-[12px] font-semibold">2 days ago</span>
-              </div>
-            </div>
-          </div>
-          <div className="bg-slate-50 border border-gray-200 rounded-[8px] px-[25px] pt-[14px] pb-[24px]">
-            <div className="flex flex-row justify-between mb-[11px]">
-              <div className="flex items-center gap-x-[12px]">
-                <span className="text-[16px] font-semibold">Sicilian</span>
-                <div className="bg-green-100 rounded-[20px] py-[3px] px-[6px] flex items-center">
-                  <span className="text-[12px] text-green-700 font-semibold">
-                    Advanced
-                  </span>
+              <div className="bg-slate-50 border border-gray-200 rounded-[8px] px-[25px] pt-[14px] pb-[24px]">
+                <div className="flex flex-row justify-between mb-[11px]">
+                  <div className="flex items-center gap-x-[12px]">
+                    <span className="text-[16px] font-semibold">Sicilian</span>
+                    <div className="bg-green-100 rounded-[20px] py-[3px] px-[6px] flex items-center">
+                      <span className="text-[12px] text-green-700 font-semibold">
+                        Advanced
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-x-[13px]">
+                    <DropdownButton options={options} />
+                    <Trash size={24} className="text-red-500" />
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-x-[13px]">
-                <DropdownButton options={options} />
-                <Trash size={24} className="text-red-500" />
-              </div>
-            </div>
-            <div className="flex flex-nowrap justify-between items-center mb-[20px]">
-              <div>
-                <span>Progress :</span>
-              </div>
-              <div className="w-4/6 h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#22C55E] rounded-full"
-                  style={{ width: "85%" }}
-                ></div>
-              </div>
-              <span>85%</span>
-            </div>
-            <div className="grid grid-cols-4 gap-x-[9px]">
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Vocabulary</span>
-                <span className="text-[12px] font-semibold">212 words</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Lessons</span>
-                <span className="text-[12px] font-semibold">2 completed</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Practice Time</span>
-                <span className="text-[12px] font-semibold">8 minutes</span>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
-                <span className="text-slate-600 font-medium">Last Activity</span>
-                <span className="text-[12px] font-semibold">2 days ago</span>
+                <div className="flex flex-nowrap justify-between items-center mb-[20px]">
+                  <div>
+                    <span>Progress :</span>
+                  </div>
+                  <div className="w-4/6 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#22C55E] rounded-full"
+                      style={{ width: "85%" }}
+                    ></div>
+                  </div>
+                  <span>85%</span>
+                </div>
+                <div className="grid grid-cols-4 gap-x-[9px]">
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Vocabulary
+                    </span>
+                    <span className="text-[12px] font-semibold">212 words</span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">Lessons</span>
+                    <span className="text-[12px] font-semibold">
+                      2 completed
+                    </span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Practice Time
+                    </span>
+                    <span className="text-[12px] font-semibold">8 minutes</span>
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-[4px] pt-[10px] pl-[10px] pb-[7px] flex flex-col gap-y-[2px]">
+                    <span className="text-slate-600 font-medium">
+                      Last Activity
+                    </span>
+                    <span className="text-[12px] font-semibold">
+                      2 days ago
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -331,37 +407,6 @@ function page() {
       ),
     },
   ];
-
-//   <div className="p-4">
-//   <div className="flex">
-//     <BookOpen size={24} className="text-indigo-700 mr-[8px]" />
-//     <h2 className="text-lg font-medium mb-4">Learning Dialects</h2>
-//   </div>
-//   <div className="flex justify-between mb-[11px]">
-//     <div className="flex items-center gap-x-[12px]">
-//       <span className="text-[16px] font-semibold">Sicilian</span>
-//       <div className="bg-green-100 rounded-[20px] py-[3px] px-[6px] flex items-center">
-//         <span className="text-[12px] text-green-500 font-semibold">
-//           Advanced
-//         </span>
-//       </div>
-//     </div>
-//     <div className="flex items-center gap-x-[13px]">
-//       <DropdownButton options={options} />
-//       <Trash size={24} className="text-red-500" />
-//     </div>
-//   </div>
-//   <div className="w-full flex items-center justify-between">
-//     <div>Progress :</div>
-//     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-//       <div
-//         className="h-full bg-gray-800 rounded-full"
-//         style={{ width: "35%" }}
-//       ></div>
-//     </div>
-//     <div>90%</div>
-//   </div>
-// </div>
 
   function AvatarUser() {
     return (
@@ -428,71 +473,96 @@ function page() {
           </Link>
         </div>
         <h1 className="text-[32px] font-semibold mb-[50px]">My Profile</h1>
-        <div className="lg:flex lg:flex-row lg:gap-x-[27px] lg:h-[395px] lg:mb-[27px]">
-          <div className="mb-[28px] lg:mb-0">
+        <div className="lg:flex lg:gap-x-[28px]">
+          <div className="lg:w-1/3 flex flex-col gap-y-[28px] mb-[28px] lg:mb-0">
             <CardUser />
-          </div>
-          <div className="mb-[28px] lg:mb-0 w-full">
-            <TabComponent defaultActiveTab='learning' tabs={tabData} />
-          </div>
-        </div>
-        <div className="lg:flex lg:flex-row lg:gap-x-[27px]">
-          <div className="mb-[28px] lg:mb-0">
             <LearningStatistics />
           </div>
-          <div className="lg:w-full border border-gray-200 bg-white rounded-[8px] px-[24px] py-[20px] flex flex-col gap-y-[29px] max-h-fit">
-            <div className="flex items-center">
-              <Lock className="text-indigo-700 mr-[8px] h-7 w-7" />
-              <h2 className="text-[20px] font-semibold">Change Password</h2>
-            </div>
-            <div>
-              <label
-                htmlFor="currentPassword"
-                className="font-medium text-[14px] text-gray-700 mb-[6px]"
-              >
-                Current Password
-              </label>
-              <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
-                <input type="text" className="w-full outline-none" />
-                <Eye className="text-gray-500" />
-              </div>
-            </div>
-            <div className="lg:flex lg:justify-between lg:gap-x-[34px]">
-              <div className="lg:w-1/2">
-                <label
-                  htmlFor="newPassword"
-                  className="font-medium text-[14px] text-gray-700 mb-[6px]"
-                >
-                  New Password
-                </label>
-                <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
-                  <input type="text" className="w-full outline-none" />
-                  <Eye className="text-gray-500" />
-                </div>
-              </div>
-              <div className="lg:w-1/2">
-                <label
-                  htmlFor="newPassword"
-                  className="font-medium text-[14px] text-gray-700 mb-[6px]"
-                >
-                  Confirm Password
-                </label>
-                <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
-                  <input type="text" className="w-full outline-none" />
-                  <Eye className="text-gray-500" />
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <button className="bg-indigo-700 text-white px-[14px] py-[11px] rounded-[6px] flex items-center gap-x-[2px]">
-                <span className="text-[15px] font-medium">Change Password</span>
-              </button>
-            </div>
+          <div className="lg:w-2/3">
+            <TabComponent defaultActiveTab='learning' tabs={tabData}/>
           </div>
         </div>
       </div>
     </div>
   );
+  // return (
+  //   <div className="min-h-screen bg-indigo-50">
+  //     <div className="container mx-auto px-4 py-4 sm:py-6 max-w-6xl">
+  //       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
+  //         <Link
+  //           href="/culture"
+  //           className="flex items-center text-indigo-600 mb-3 sm:mb-0"
+  //         >
+  //           <ArrowLeft className="h-4 w-4 mr-1" />
+  //           <span>Back to menu</span>
+  //         </Link>
+  //       </div>
+  //       <h1 className="text-[32px] font-semibold mb-[50px]">My Profile</h1>
+  //       <div className="lg:flex lg:flex-row lg:gap-x-[27px] lg:h-[395px] lg:mb-[27px]">
+  //         <div className="mb-[28px] lg:mb-0">
+  //           <CardUser />
+  //         </div>
+  //         <div className="mb-[28px] lg:mb-0 w-full">
+  //           <TabComponent defaultActiveTab='personal' tabs={tabData} />
+  //         </div>
+  //       </div>
+  //       <div className="lg:flex lg:flex-row lg:gap-x-[27px]">
+  //         <div className="mb-[28px] lg:mb-0">
+  //           <LearningStatistics />
+  //         </div>
+  //         <div className="lg:w-full border border-gray-200 bg-white rounded-[8px] px-[24px] py-[20px] flex flex-col gap-y-[29px] max-h-fit">
+  //           <div className="flex items-center">
+  //             <Lock className="text-indigo-700 mr-[8px] h-7 w-7" />
+  //             <h2 className="text-[20px] font-semibold">Change Password</h2>
+  //           </div>
+  //           <div>
+  //             <label
+  //               htmlFor="currentPassword"
+  //               className="font-medium text-[14px] text-gray-700 mb-[6px]"
+  //             >
+  //               Current Password
+  //             </label>
+  //             <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+  //               <input type="text" className="w-full outline-none" />
+  //               <Eye className="text-gray-500" />
+  //             </div>
+  //           </div>
+  //           <div className="lg:flex lg:justify-between lg:gap-x-[34px]">
+  //             <div className="lg:w-1/2">
+  //               <label
+  //                 htmlFor="newPassword"
+  //                 className="font-medium text-[14px] text-gray-700 mb-[6px]"
+  //               >
+  //                 New Password
+  //               </label>
+  //               <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+  //                 <input type="text" className="w-full outline-none" />
+  //                 <Eye className="text-gray-500" />
+  //               </div>
+  //             </div>
+  //             <div className="lg:w-1/2">
+  //               <label
+  //                 htmlFor="newPassword"
+  //                 className="font-medium text-[14px] text-gray-700 mb-[6px]"
+  //               >
+  //                 Confirm Password
+  //               </label>
+  //               <div className="flex flex-row border border-indigo-200 w-full rounded-[6px] p-2">
+  //                 <input type="text" className="w-full outline-none" />
+  //                 <Eye className="text-gray-500" />
+  //               </div>
+  //             </div>
+  //           </div>
+  //           <div className="flex justify-end">
+  //             <button className="bg-indigo-700 text-white px-[14px] py-[11px] rounded-[6px] flex items-center gap-x-[2px]">
+  //               <span className="text-[15px] font-medium">Change Password</span>
+  //             </button>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default page
