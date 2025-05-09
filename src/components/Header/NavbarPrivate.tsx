@@ -1,7 +1,12 @@
+"use client"
 import React from "react";
+import { useRouter } from "next/navigation";
 import { HeaderDictionaryButton } from "@/components/Dictionary/header-dictionary-button";
 
 function NavbarPrivate() {
+
+  const router = useRouter();
+
   return (
     <header className="flex items-center justify-center px-6 py-3 bg-white border-b border-gray-200">
       <div className="max-w-6xl w-full mx-auto flex justify-between">
@@ -25,7 +30,7 @@ function NavbarPrivate() {
               15
             </div>
             <button className="rounded-full p-1 hover:bg-slate-100">
-              <div className="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
+              <div className="h-8 w-8 rounded-full bg-slate-200 overflow-hidden cursor-pointer" onClick={() => router.push('my-profile')}>
                 <img
                   src="/avatarImg.png"
                   alt="Profile"

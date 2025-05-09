@@ -1,48 +1,48 @@
 "use client"
 
-import type React from "react";
-import { useState } from "react";
-import { Badge } from "@/components/ui/Badge";
-import { Progress } from "@/components/ui/Progress";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import type React from "react"
+import { Badge } from "@/components/ui/Badge"
+import { Progress } from "@/components/ui/Progress"
+import { Input } from "@/components/ui/Input"
+import { Button } from "@/components/ui/Button"
 import {
-  Lock,
-  Unlock,
-  Check,
-  Star,
+  ArrowLeft,
   BookOpen,
   Users,
   Utensils,
   Calendar,
   Music,
   Briefcase,
-  ArrowLeft,
-  ChevronDown,
-  ChevronUp,
   MessageCircle,
   Coffee,
   GraduationCap,
   Paintbrush,
   Home,
-} from "lucide-react";
-import { cn } from "@/utils/utils";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
+  Clock,
+  ChevronRight,
+  Search,
+} from "lucide-react"
 
 // Define lesson type
 type Lesson = {
-  id: number
-  title: {
-    dialect: string
-    translation: string
-  }
-  level: "Beginner" | "Intermediate" | "Advanced"
-  theme: string
-  icon: React.ElementType
-  completed: boolean
-  locked: boolean
+  id: string
+  title: string
+  description: string
+  level: string
+  duration: string
+  progress: number
+  category: string
+  theme?: string
+  icon?: React.ElementType
+  completed?: boolean
+  locked?: boolean
   score?: number
-  maxScore: number
-  color: string
+  maxScore?: number
+  color?: string
+  dialect?: string
+  translation?: string
 }
 
 // Define chapter type
@@ -58,16 +58,17 @@ type Chapter = {
   expanded?: boolean
 }
 
-export default function LessonsPage() {
-  const t = useTranslations("LessonsPage");
+export default function LessonsPage({ onTabChange }: { onTabChange?: (tab: string) => void }) {
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState("")
+
   // Sample chapters data
   const [chapters, setChapters] = useState<Chapter[]>([
     // Chapter 1: Conversations
     {
       id: 1,
       title: "Basic Conversations",
-      description:
-        "Learn essential phrases for everyday conversations in Sicilian",
+      description: "Learn essential phrases for everyday conversations in Sicilian",
       icon: MessageCircle,
       color: "from-blue-500 to-indigo-600",
       completed: false,
@@ -75,12 +76,13 @@ export default function LessonsPage() {
       expanded: true,
       lessons: [
         {
-          id: 101,
-          title: {
-            dialect: "Saluti e Presentazioni",
-            translation: "Greetings and Introductions",
-          },
-          level: "Beginner",
+          id: "101",
+          title: "Greetings and Introductions",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: Users,
           completed: true,
@@ -88,14 +90,17 @@ export default function LessonsPage() {
           score: 85,
           maxScore: 100,
           color: "bg-blue-500",
+          dialect: "Saluti e Presentazioni",
+          translation: "Greetings and Introductions",
         },
         {
-          id: 102,
-          title: {
-            dialect: "Cumu Stai?",
-            translation: "How are you?",
-          },
-          level: "Beginner",
+          id: "102",
+          title: "How are you?",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: MessageCircle,
           completed: true,
@@ -103,48 +108,59 @@ export default function LessonsPage() {
           score: 92,
           maxScore: 100,
           color: "bg-blue-600",
+          dialect: "Cumu Stai?",
+          translation: "How are you?",
         },
         {
-          id: 103,
-          title: {
-            dialect: "Parlari di Tia",
-            translation: "Talking About Yourself",
-          },
-          level: "Beginner",
+          id: "103",
+          title: "Talking About Yourself",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: Users,
           completed: false,
           locked: false,
           maxScore: 100,
           color: "bg-blue-500",
+          dialect: "Parlari di Tia",
+          translation: "Talking About Yourself",
         },
         {
-          id: 104,
-          title: {
-            dialect: "Dumanni Comuni",
-            translation: "Common Questions",
-          },
-          level: "Intermediate",
+          id: "104",
+          title: "Common Questions",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: MessageCircle,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-blue-600",
+          dialect: "Dumanni Comuni",
+          translation: "Common Questions",
         },
         {
-          id: 105,
-          title: {
-            dialect: "Cunvirsazzioni Avanzati",
-            translation: "Advanced Conversations",
-          },
-          level: "Advanced",
+          id: "105",
+          title: "Advanced Conversations",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: Users,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-blue-700",
+          dialect: "Cunvirsazzioni Avanzati",
+          translation: "Advanced Conversations",
         },
       ],
     },
@@ -154,80 +170,95 @@ export default function LessonsPage() {
       title: "At the Restaurant",
       description: "Master restaurant vocabulary and ordering food in Sicilian",
       icon: Coffee,
-      color: "from-orange-500 to-red-600",
+      color: "from-purple-500 to-violet-600",
       completed: false,
       locked: false,
       expanded: false,
       lessons: [
         {
-          id: 201,
-          title: {
-            dialect: "Ordinarri u Manciari",
-            translation: "Ordering Food",
-          },
-          level: "Beginner",
+          id: "201",
+          title: "Ordering Food",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Cuisine",
           icon: Utensils,
           completed: false,
           locked: false,
           maxScore: 100,
-          color: "bg-orange-500",
+          color: "bg-purple-500",
+          dialect: "Ordinarri u Manciari",
+          translation: "Ordering Food",
         },
         {
-          id: 202,
-          title: {
-            dialect: "Piatti Tipici",
-            translation: "Traditional Dishes",
-          },
-          level: "Beginner",
+          id: "202",
+          title: "Traditional Dishes",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Cuisine",
           icon: Utensils,
           completed: false,
           locked: false,
           maxScore: 100,
-          color: "bg-orange-600",
+          color: "bg-purple-600",
+          dialect: "Piatti Tipici",
+          translation: "Traditional Dishes",
         },
         {
-          id: 203,
-          title: {
-            dialect: "Parlari cu lu Cammareri",
-            translation: "Talking with the Waiter",
-          },
-          level: "Intermediate",
+          id: "203",
+          title: "Talking with the Waiter",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Communication",
           icon: Coffee,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-orange-500",
+          color: "bg-purple-500",
+          dialect: "Parlari cu lu Cammareri",
+          translation: "Talking with the Waiter",
         },
         {
-          id: 204,
-          title: {
-            dialect: "Ricetti e Ingredienti",
-            translation: "Recipes and Ingredients",
-          },
-          level: "Intermediate",
+          id: "204",
+          title: "Recipes and Ingredients",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Cuisine",
           icon: Utensils,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-orange-600",
+          color: "bg-purple-600",
+          dialect: "Ricetti e Ingredienti",
+          translation: "Recipes and Ingredients",
         },
         {
-          id: 205,
-          title: {
-            dialect: "Critichi Gastronomichi",
-            translation: "Food Reviews",
-          },
-          level: "Advanced",
+          id: "205",
+          title: "Food Reviews",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Cuisine",
           icon: Coffee,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-orange-700",
+          color: "bg-purple-700",
+          dialect: "Critichi Gastronomichi",
+          translation: "Food Reviews",
         },
       ],
     },
@@ -237,80 +268,95 @@ export default function LessonsPage() {
       title: "At Work",
       description: "Learn professional vocabulary and workplace conversations",
       icon: Briefcase,
-      color: "from-green-500 to-emerald-600",
+      color: "from-indigo-500 to-blue-600",
       completed: false,
       locked: true,
       expanded: false,
       lessons: [
         {
-          id: 301,
-          title: {
-            dialect: "Professioni e Misteri",
-            translation: "Professions and Trades",
-          },
-          level: "Beginner",
+          id: "301",
+          title: "Professions and Trades",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Employment",
           icon: Briefcase,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-green-500",
+          color: "bg-indigo-500",
+          dialect: "Professioni e Misteri",
+          translation: "Professions and Trades",
         },
         {
-          id: 302,
-          title: {
-            dialect: "Nta l'Uffiziu",
-            translation: "In the Office",
-          },
-          level: "Beginner",
+          id: "302",
+          title: "In the Office",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Employment",
           icon: Briefcase,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-green-600",
+          color: "bg-indigo-600",
+          dialect: "Nta l'Uffiziu",
+          translation: "In the Office",
         },
         {
-          id: 303,
-          title: {
-            dialect: "Riunioni e Appuntamenti",
-            translation: "Meetings and Appointments",
-          },
-          level: "Intermediate",
+          id: "303",
+          title: "Meetings and Appointments",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Employment",
           icon: Calendar,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-green-500",
+          color: "bg-indigo-500",
+          dialect: "Riunioni e Appuntamenti",
+          translation: "Meetings and Appointments",
         },
         {
-          id: 304,
-          title: {
-            dialect: "Progetti e Collaborazioni",
-            translation: "Projects and Collaborations",
-          },
-          level: "Intermediate",
+          id: "304",
+          title: "Projects and Collaborations",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Employment",
           icon: Briefcase,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-green-600",
+          color: "bg-indigo-600",
+          dialect: "Progetti e Collaborazioni",
+          translation: "Projects and Collaborations",
         },
         {
-          id: 305,
-          title: {
-            dialect: "Negoziazioni Avanzati",
-            translation: "Advanced Negotiations",
-          },
-          level: "Advanced",
+          id: "305",
+          title: "Advanced Negotiations",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Employment",
           icon: Briefcase,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-green-700",
+          color: "bg-indigo-700",
+          dialect: "Negoziazioni Avanzati",
+          translation: "Advanced Negotiations",
         },
       ],
     },
@@ -320,80 +366,95 @@ export default function LessonsPage() {
       title: "At School",
       description: "Educational vocabulary and academic conversations",
       icon: GraduationCap,
-      color: "from-purple-500 to-violet-600",
+      color: "from-violet-500 to-purple-600",
       completed: false,
       locked: true,
       expanded: false,
       lessons: [
         {
-          id: 401,
-          title: {
-            dialect: "Materii e Classi",
-            translation: "Subjects and Classes",
-          },
-          level: "Beginner",
+          id: "401",
+          title: "Subjects and Classes",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Education",
           icon: GraduationCap,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-purple-500",
+          color: "bg-violet-500",
+          dialect: "Materii e Classi",
+          translation: "Subjects and Classes",
         },
         {
-          id: 402,
-          title: {
-            dialect: "Parlari cu l'Insegnanti",
-            translation: "Talking with Teachers",
-          },
-          level: "Beginner",
+          id: "402",
+          title: "Talking with Teachers",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Education",
           icon: GraduationCap,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-purple-600",
+          color: "bg-violet-600",
+          dialect: "Parlari cu l'Insegnanti",
+          translation: "Talking with Teachers",
         },
         {
-          id: 403,
-          title: {
-            dialect: "Esami e Compiti",
-            translation: "Exams and Homework",
-          },
-          level: "Intermediate",
+          id: "403",
+          title: "Exams and Homework",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Education",
           icon: BookOpen,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-purple-500",
+          color: "bg-violet-500",
+          dialect: "Esami e Compiti",
+          translation: "Exams and Homework",
         },
         {
-          id: 404,
-          title: {
-            dialect: "Discussioni Accademichi",
-            translation: "Academic Discussions",
-          },
-          level: "Intermediate",
+          id: "404",
+          title: "Academic Discussions",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Education",
           icon: GraduationCap,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-purple-600",
+          color: "bg-violet-600",
+          dialect: "Discussioni Accademichi",
+          translation: "Academic Discussions",
         },
         {
-          id: 405,
-          title: {
-            dialect: "Presentazioni e Dibattiti",
-            translation: "Presentations and Debates",
-          },
-          level: "Advanced",
+          id: "405",
+          title: "Presentations and Debates",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Education",
           icon: GraduationCap,
           completed: false,
           locked: true,
           maxScore: 100,
-          color: "bg-purple-700",
+          color: "bg-violet-700",
+          dialect: "Presentazioni e Dibattiti",
+          translation: "Presentations and Debates",
         },
       ],
     },
@@ -409,74 +470,89 @@ export default function LessonsPage() {
       expanded: false,
       lessons: [
         {
-          id: 501,
-          title: {
-            dialect: "Arti Visivi",
-            translation: "Visual Arts",
-          },
-          level: "Beginner",
+          id: "501",
+          title: "Visual Arts",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Arts",
           icon: Paintbrush,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-pink-500",
+          dialect: "Arti Visivi",
+          translation: "Visual Arts",
         },
         {
-          id: 502,
-          title: {
-            dialect: "Musica e Balli",
-            translation: "Music and Dance",
-          },
-          level: "Beginner",
+          id: "502",
+          title: "Music and Dance",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Arts",
           icon: Music,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-pink-600",
+          dialect: "Musica e Balli",
+          translation: "Music and Dance",
         },
         {
-          id: 503,
-          title: {
-            dialect: "Letteratura e Puisia",
-            translation: "Literature and Poetry",
-          },
-          level: "Intermediate",
+          id: "503",
+          title: "Literature and Poetry",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Arts",
           icon: BookOpen,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-pink-500",
+          dialect: "Letteratura e Puisia",
+          translation: "Literature and Poetry",
         },
         {
-          id: 504,
-          title: {
-            dialect: "Teatru e Cinema",
-            translation: "Theater and Cinema",
-          },
-          level: "Intermediate",
+          id: "504",
+          title: "Theater and Cinema",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Arts",
           icon: Paintbrush,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-pink-600",
+          dialect: "Teatru e Cinema",
+          translation: "Theater and Cinema",
         },
         {
-          id: 505,
-          title: {
-            dialect: "Critichi Artistichi",
-            translation: "Art Criticism",
-          },
-          level: "Advanced",
+          id: "505",
+          title: "Art Criticism",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Arts",
           icon: Paintbrush,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-pink-700",
+          dialect: "Critichi Artistichi",
+          translation: "Art Criticism",
         },
       ],
     },
@@ -492,278 +568,226 @@ export default function LessonsPage() {
       expanded: false,
       lessons: [
         {
-          id: 601,
-          title: {
-            dialect: "Parti di la Casa",
-            translation: "Parts of the House",
-          },
-          level: "Beginner",
+          id: "601",
+          title: "Parts of the House",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "15 min",
+          progress: 0,
+          category: "Essential",
           theme: "Home",
           icon: Home,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-cyan-500",
+          dialect: "Parti di la Casa",
+          translation: "Parts of the House",
         },
         {
-          id: 602,
-          title: {
-            dialect: "Faccenni Domestichi",
-            translation: "Household Chores",
-          },
-          level: "Beginner",
+          id: "602",
+          title: "Household Chores",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Débutant",
+          duration: "20 min",
+          progress: 0,
+          category: "Essential",
           theme: "Home",
           icon: Home,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-cyan-600",
+          dialect: "Faccenni Domestichi",
+          translation: "Household Chores",
         },
         {
-          id: 603,
-          title: {
-            dialect: "Cucinari e Ricetti",
-            translation: "Cooking and Recipes",
-          },
-          level: "Intermediate",
+          id: "603",
+          title: "Cooking and Recipes",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Home",
           icon: Utensils,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-cyan-500",
+          dialect: "Cucinari e Ricetti",
+          translation: "Cooking and Recipes",
         },
         {
-          id: 604,
-          title: {
-            dialect: "Arredamentu e Decorazioni",
-            translation: "Furniture and Decorations",
-          },
-          level: "Intermediate",
+          id: "604",
+          title: "Furniture and Decorations",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Intermédiaire",
+          duration: "30 min",
+          progress: 0,
+          category: "Essential",
           theme: "Home",
           icon: Home,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-cyan-600",
+          dialect: "Arredamentu e Decorazioni",
+          translation: "Furniture and Decorations",
         },
         {
-          id: 605,
-          title: {
-            dialect: "Ospitari Amici e Parenti",
-            translation: "Hosting Friends and Family",
-          },
-          level: "Advanced",
+          id: "605",
+          title: "Hosting Friends and Family",
+          description: "Learn how to introduce yourself and greet someone in Sicilian.",
+          level: "Avancé",
+          duration: "25 min",
+          progress: 0,
+          category: "Essential",
           theme: "Home",
           icon: Home,
           completed: false,
           locked: true,
           maxScore: 100,
           color: "bg-cyan-700",
+          dialect: "Ospitari Amici e Parenti",
+          translation: "Hosting Friends and Family",
         },
       ],
     },
-  ]);
+  ])
 
   // Toggle chapter expansion
   const toggleChapter = (chapterId: number) => {
     setChapters(
-      chapters.map((chapter) =>
-        chapter.id === chapterId
-          ? { ...chapter, expanded: !chapter.expanded }
-          : chapter
-      )
-    );
-  };
+      chapters.map((chapter) => (chapter.id === chapterId ? { ...chapter, expanded: !chapter.expanded } : chapter)),
+    )
+  }
 
   // Calculate overall progress
-  const totalLessons = chapters.reduce(
-    (total, chapter) => total + chapter.lessons.length,
-    0
-  );
+  const totalLessons = chapters.reduce((total, chapter) => total + chapter.lessons.length, 0)
   const completedLessons = chapters.reduce(
-    (total, chapter) =>
-      total + chapter.lessons.filter((lesson) => lesson.completed).length,
-    0
-  );
-  const progressPercentage = (completedLessons / totalLessons) * 100;
+    (total, chapter) => total + chapter.lessons.filter((lesson) => lesson.completed).length,
+    0,
+  )
+  const progressPercentage = (completedLessons / totalLessons) * 100
 
   // Function to handle clicking on a lesson
-  const handleLessonClick = (chapterId: number, lessonId: number) => {
-    // Only allow clicking on unlocked lessons
-    const chapter = chapters.find((c) => c.id === chapterId);
-    const lesson = chapter?.lessons.find((l) => l.id === lessonId);
+  const handleLessonClick = (lessonId: string) => {
+    router.push(`/lessons/${lessonId}`)
+  }
 
-    if (chapter && !chapter.locked && lesson && !lesson.locked) {
-      console.log(
-        `Opening lesson ${lessonId}: ${lesson.title.dialect} from chapter ${chapterId}`
-      );
-      // Here you would navigate to the lesson page or open a modal
-      // For now, we'll just log it
+  const filteredLessons = chapters
+    .flatMap((chapter) => chapter.lessons)
+    .filter(
+      (lesson) =>
+        lesson.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (lesson.description?.toLowerCase()?.includes(searchQuery.toLowerCase()) ?? false),
+    )
+
+  const handleTabChange = (tab: string) => {
+    if (onTabChange) {
+      onTabChange(tab)
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Main content */}
-      <div className="flex-grow bg-indigo-50">
-        <div className="container mx-auto px-4 py-8">
-          {/* Back button, title and progress */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="max-w-6xl w-full mx-auto flex justify-between">
-            <Link
-              href="/dashboard"
-              className="flex items-center text-indigo-700 hover:text-indigo-900 transition-colors"
+    <div className="min-h-screen bg-[#f8f7ff]">
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-6 max-w-4xl">
+        <div className="flex items-center mb-6 gap-x-2">
+          <div className="flex items-center">
+            <button
+              onClick={() => handleTabChange("lessons")}
+              className="flex items-center text-indigo-600 mb-4 md:mb-0 cursor-pointer"
             >
               <ArrowLeft className="h-5 w-5 mr-1" />
-              <span className="text-sm font-medium">{t("back")}</span>
-            </Link>
-
-            <h1 className="text-2xl font-bold text-center">{t("title")}</h1>
-
-            <div className="flex flex-col items-end">
-              <span className="text-sm font-medium mb-1">
-                {completedLessons}/{totalLessons} {t("progress_bar.completed")}
-              </span>
-              <div className="w-32">
-                <Progress value={progressPercentage} className="h-2" />
-              </div>
-            </div>
+            </button>
           </div>
-          </div>
+          <h1 className="text-2xl font-bold ">Leçons de Sicilien</h1>
+        </div>
 
-          {/* Chapters */}
-          <div className="space-y-6 flex flex-col items-center">
-            {chapters.map((chapter) => (
-              <div
-                key={chapter.id}
-                className={cn(
-                  "rounded-xl overflow-hidden transition-all duration-200 w-2/3",
-                  chapter.locked ? "opacity-60" : ""
-                )}
-              >
-                {/* Chapter header */}
-                <div
-                  className={cn(
-                    "bg-gradient-to-r p-5 text-white cursor-pointer",
-                    chapter.locked ? "cursor-not-allowed" : "cursor-pointer",
-                    chapter.color
-                  )}
-                  onClick={() => !chapter.locked && toggleChapter(chapter.id)}
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-white/20 p-3 rounded-lg">
-                        <chapter.icon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h2 className="text-xl font-bold">{chapter.title}</h2>
-                        <p className="text-white/80 text-sm">
-                          {chapter.description}
-                        </p>
-                      </div>
+        {/* Search */}
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <Input
+            type="text"
+            placeholder="Rechercher des leçons..."
+            className="pl-10 bg-white border border-gray-200"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          <Button variant="outline" size="sm" className="rounded-full bg-white border-gray-200">
+            Tous
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full bg-indigo-50 text-indigo-700 border-indigo-200">
+            Débutant
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full bg-white border-gray-200">
+            Intermédiaire
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full bg-white border-gray-200">
+            Avancé
+          </Button>
+        </div>
+
+        {/* Lessons */}
+        <div className="space-y-4">
+          {filteredLessons.map((lesson) => (
+            <div
+              key={lesson.id}
+              className="bg-white rounded-xl p-4 shadow-sm border-gray-200 hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => handleLessonClick(lesson.id)}
+            >
+              <div className="flex flex-col md:flex-row md:items-center gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Badge variant="outline" className="bg-indigo-50 text-indigo-700 border-0">
+                      {lesson.level}
+                    </Badge>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-0">
+                      {lesson.category}
+                    </Badge>
+                  </div>
+                  <h2 className="font-semibold text-lg">{lesson.title}</h2>
+                  <p className="text-slate-600 text-sm mt-1">{lesson.description}</p>
+
+                  <div className="flex items-center gap-4 mt-3">
+                    <div className="flex items-center gap-1 text-xs text-slate-500">
+                      <GraduationCap className="h-3.5 w-3.5" />
+                      <span>{lesson.level}</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      {/* Chapter progress */}
-                      <div className="hidden md:flex items-center space-x-2">
-                        <div className="w-32 bg-white/20 rounded-full h-2 overflow-hidden">
-                          <div
-                            className="bg-white h-full"
-                            style={{
-                              width: `${
-                                (chapter.lessons.filter((l) => l.completed)
-                                  .length /
-                                  chapter.lessons.length) *
-                                100
-                              }%`,
-                            }}
-                          ></div>
-                        </div>
-                        <span className="text-sm">
-                          {chapter.lessons.filter((l) => l.completed).length}/
-                          {chapter.lessons.length}
-                        </span>
-                      </div>
-
-                      {/* Lock/Unlock status */}
-                      {chapter.locked ? (
-                        <Lock className="h-5 w-5" />
-                      ) : chapter.expanded ? (
-                        <ChevronUp className="h-5 w-5" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5" />
-                      )}
+                    <div className="flex items-center gap-1 text-xs text-slate-500">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>{lesson.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-slate-500">
+                      <BookOpen className="h-3.5 w-3.5" />
+                      <span>Leçon {lesson.id}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Chapter lessons */}
-                {chapter.expanded && !chapter.locked && (
-                  <div className="bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {chapter.lessons.map((lesson) => (
-                      <div
-                        key={lesson.id}
-                        onClick={() => handleLessonClick(chapter.id, lesson.id)}
-                        className={cn(
-                          "rounded-xl overflow-hidden transition-all duration-200",
-                          lesson.locked
-                            ? "opacity-60 cursor-not-allowed"
-                            : "cursor-pointer hover:scale-105"
-                        )}
-                      >
-                        <div className={`${lesson.color} p-4 text-white`}>
-                          <div className="flex justify-between items-start">
-                            <div className="bg-white/20 p-2 rounded-lg">
-                              <lesson.icon className="h-5 w-5" />
-                            </div>
-                            <div>
-                              {lesson.locked ? (
-                                <Lock className="h-5 w-5" />
-                              ) : lesson.completed ? (
-                                <div className="bg-white/20 rounded-full p-1">
-                                  <Check className="h-4 w-4" />
-                                </div>
-                              ) : (
-                                <Unlock className="h-5 w-5" />
-                              )}
-                            </div>
-                          </div>
-
-                          <h3 className="text-lg font-bold mt-3 mb-1 line-clamp-1">
-                            {lesson.title.dialect}
-                          </h3>
-                          <p className="text-white/80 text-sm italic mb-2 line-clamp-1">
-                            {lesson.title.translation}
-                          </p>
-
-                          <div className="flex justify-between items-center mt-2">
-                            <Badge
-                              className={`
-                                border-0 text-xs font-normal py-0.5 px-2
-                                bg-white/20 text-white
-                              `}
-                            >
-                              {lesson.level}
-                            </Badge>
-                            {lesson.completed && lesson.score && (
-                              <div className="flex items-center bg-white/20 rounded-full px-2 py-0.5">
-                                <Star className="h-3 w-3 mr-1 fill-white" />
-                                <span className="text-xs font-medium">
-                                  {lesson.score}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="flex items-center gap-3">
+                  {lesson.progress > 0 ? (
+                    <div className="flex items-center gap-2">
+                      <Progress value={lesson.progress} className="w-24 h-2" />
+                      <span className="text-xs font-medium">{lesson.progress}%</span>
+                    </div>
+                  ) : (
+                    <Badge className="bg-amber-100 text-amber-700 border-0">Nouveau</Badge>
+                  )}
+                  <ChevronRight className="h-5 w-5 text-slate-400" />
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </div>
+      </main>
     </div>
-  );
+  )
 }

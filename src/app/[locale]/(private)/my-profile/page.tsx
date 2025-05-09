@@ -630,7 +630,7 @@ function page() {
       <div className="container mx-auto px-4 py-4 sm:py-6 max-w-6xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
           <Link
-            href="/culture"
+            href="/dashboard"
             className="flex items-center text-indigo-600 mb-3 sm:mb-0"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
