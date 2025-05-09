@@ -9,7 +9,7 @@ function NavbarPrivate() {
 
   return (
     <header className="flex items-center justify-center px-6 py-3 bg-white border-b border-gray-200">
-      <div className="max-w-6xl w-full mx-auto flex justify-between">
+      <div className="max-w-6xl w-full mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="flex items-center text-indigo-600 font-bold">
             <span className="bg-black text-white text-xs px-1.5 py-0.5 rounded mr-1">
